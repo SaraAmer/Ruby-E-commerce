@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  root to: 'products#home'
   resources :products
   resources :stores
   devise_for :users
