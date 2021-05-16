@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -33,9 +33,13 @@
         </li>
              <li class="list-item login">
               
-             <a href="<%= new_user_session_path %>"> <i class="fas fa-sign-in-alt"></i></a>
+             <a href="<%= new_user_session_path %>">
+              <%# <i class="fas fa-sign-in-alt">
+              </i>
+              </a> %>
 
-              
+               <%= link_to "Logout ", destroy_user_session_path, method: :delete%> 
+ 
 
         </li>
     </ul>
