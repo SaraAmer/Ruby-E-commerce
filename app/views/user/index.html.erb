@@ -40,7 +40,7 @@
     <%= image_tag current_user.avatar , class: 'avatar' %>
 
     <%else%>
-    <%=image_tag gravatar_image_url(current_user.email,size: 100),height: 100,  class: 'rounded-circle' %>
+    <%=image_tag gravatar_image_url(current_user.email,size: 130) ,  class: 'avatar' %>
 
     <%end%>
 
