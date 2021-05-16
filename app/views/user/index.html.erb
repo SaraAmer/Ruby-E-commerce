@@ -1,3 +1,23 @@
+    <style>
+.avatar {
+  vertical-align: middle;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+
+ border-style:solid;
+ border-color:#D3D3D3;
+ border-width:4px
+
+ 
+}
+    </style>
+
+
+
+
+
+  
 <%# <h1>User profile</h1> %>
 
  <%# <div class="conatiner mb-5 border border-primary" > %>
@@ -12,7 +32,19 @@
 <div style="width:500; height:500" >
 <% if user_signed_in? %>
  <div  style="width:500; height:500" class="card">
- <%= image_tag('https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-02-512.png',class:"displayed",:size => "260x180") %> 
+
+
+
+
+<%if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar , class: 'avatar' %>
+
+    <%else%>
+    <%=image_tag gravatar_image_url(current_user.email,size: 130),  class: 'avatar' %>
+
+    <%end%>
+
+
 
   <div class="container">
     <h4 style=" text-align: center;"><b> Your Name:</b> <%=  current_user.name %>  <br>

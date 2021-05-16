@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+    <style>
+.mini-avatar {
+  vertical-align: middle;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+
+ border-style:solid;
+ border-color:#D3D3D3;
+ border-width:4px
+
+ 
+}
+    </style>
+
 <html>
   <head>
     <title>ECommerce</title>
@@ -41,7 +56,17 @@
    </li>
 
 <% if user_signed_in? %>
-<li class="list-item " style="float: right; margin:10px; "> <%= image_tag('https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-02-512.png',:size => "20x20") %>
+<li class="list-item " style="float: right; margin:10px; "> 
+<%if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar , class: 'avatar' %>
+
+    <%else%>
+    <%=image_tag gravatar_image_url(current_user.email,size: 100),height: 100,  class: 'mini-avatar' %>
+
+    <%end%>
+
+
+
 <%= link_to current_user.name, user_index_path %></li>
 <li class="list-item" style=" margin:10px;"> <%= link_to 'Logout', destroy_user_session_path , method: :delete %></li>
 <% else %>
