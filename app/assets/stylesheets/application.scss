@@ -14,60 +14,59 @@
  *= require_self
  */
 
-
 body {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
 .logo {
-    display: inline-block;
-    font-size: 20px;
-    color: #000;
+  display: inline-block;
+  font-size: 20px;
+  color: #000;
 }
 
 ul {
-    display: inline-block;
+  display: inline-block;
 }
 
 .list {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .list-item {
-    font-size: 15px;
-    color: #000;
-    transition: ease-in-out 0.5s;
-    display: inline-block;
-    text-decoration: none;
-    margin-left: 10px;
-    margin-right: 10px;
-    cursor: pointer;
+  font-size: 15px;
+  color: #000;
+  transition: ease-in-out 0.5s;
+  display: inline-block;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .list-item:hover,
 .list-item.active {
-    color: #717fe0;
+  color: #717fe0;
 }
 
 .login {
-    text-align: right;
-    position: absolute;
-    right: 10px;
-    font-size: 20px;
+  text-align: right;
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
 }
 
 .search {
-    text-align: right;
-    position: absolute;
-    right: 50px;
-    font-size: 20px;
+  text-align: right;
+  position: absolute;
+  right: 50px;
+  font-size: 20px;
 }
 
 .a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    color: #717fe0;
-    background-color: #ccc
+  color: #717fe0;
+  background-color: #ccc;
 }

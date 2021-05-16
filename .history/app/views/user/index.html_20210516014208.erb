@@ -1,0 +1,6 @@
+<h1>User profile</h1>
+
+<% if user_signed_in? %>
+    <%=  current_user.name %> <br>
+    <%=  current_user.email %>
+<% end %>    
