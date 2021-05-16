@@ -1,0 +1,348 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*! CSS Used from: https://preview.colorlib.com/theme/cozastore/A.vendor,,_bootstrap,,_css,,_bootstrap.min.css+fonts,,_font-awesome-4.7.0,,_css,,_font-awesome.min.css+fonts,,_iconic,,_css,,_material-design-iconic-font.min.css+fonts,,_linearicons-v1.0.0,,_icon-font.min.css+vendor,,_animate,,_animate.css+vendor,,_css-hamburgers,,_hamburgers.min.css+vendor,,_animsition,,_css,,_animsition.min.css+vendor,,_select2,,_select2.min.css+vendor,,_daterangepicker,,_daterangepicker.css+vendor,,_slick,,_slick.css+vendor,,_MagnificPopup,,_magnific-popup.css+vendor,,_perfect-scrollbar,,_perfect-scrollbar.css+css,,_util.css+css,,_main.css,Mcc.alDRsT4tJn.css.pagespeed.cf.yxSwRIUj3U.css */
+
+@media print {
+    *,
+    ::after,
+    ::before {
+        text-shadow: none!important;
+        box-shadow: none!important;
+    }
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+    h2 {
+        orphans: 3;
+        widows: 3;
+    }
+    h2 {
+        page-break-after: avoid;
+    }
+}
+
+*,
+::after,
+::before {
+    box-sizing: inherit;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+a {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+h2 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+}
+
+@media (min-width:576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width:768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width:992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.rotateInDownLeft {
+    animation-name: rotateInDownLeft;
+}
+
+.rotateInUpRight {
+    animation-name: rotateInUpRight;
+}
+
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a:focus {
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h2 {
+    margin: 0;
+}
+
+.p-t-19 {
+    padding-top: 19px;
+}
+
+.p-t-100 {
+    padding-top: 100px;
+}
+
+.p-b-30 {
+    padding-bottom: 30px;
+}
+
+.p-b-43 {
+    padding-bottom: 43px;
+}
+
+.p-lr-15 {
+    padding-left: 15px;
+}
+
+.p-lr-15 {
+    padding-right: 15px;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.visible-false {
+    visibility: hidden;
+}
+
+.visible-true {
+    visibility: visible;
+}
+
+.trans-04 {
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
+
+.flex-c-m,
+.flex-col-l-m {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.flex-c-m {
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+}
+
+.flex-col-l-m {
+    -ms-align-items: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.flex-col-l-m {
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1380px;
+}
+
+@media (max-width:1600px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+.item-slick1 {
+    height: calc(100vh - 40px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@media (max-width:991px) {
+    .item-slick1 {
+        height: calc(100vh - 70px)!important;
+    }
+}
+
+.cl0 {
+    color: #fff;
+}
+
+.cl2 {
+    color: #333;
+}
+
+.stext-101 {
+    font-family: Poppins-Medium;
+    font-size: 15px;
+    line-height: 1.466667;
+    text-transform: uppercase;
+}
+
+.ltext-101 {
+    font-family: Poppins-Regular;
+    font-size: 28px;
+    line-height: 1.2857;
+}
+
+.ltext-201 {
+    font-family: PlayfairDisplay-Bold;
+    font-size: 60px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.size-101 {
+    min-width: 161px;
+    height: 46px;
+}
+
+.bg1 {
+    background-color: #717fe0;
+}
+
+.bor1 {
+    border-radius: 23px;
+}
+
+.hov-btn1:hover {
+    border-color: #222;
+    background-color: #222;
+    color: #fff;
+}
+
+@media (max-width:991px) {
+    .respon5 {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width:575px) {
+    .respon1 {
+        font-size: 40px;
+    }
+    .respon2 {
+        font-size: 20px;
+    }
+}
+
+
+/*! CSS Used keyframes */
+
+@keyframes rotateInDownLeft {
+    from {
+        transform-origin: left bottom;
+        transform: rotate3d(0, 0, 1, -45deg);
+        opacity: 0;
+    }
+    to {
+        transform-origin: left bottom;
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@keyframes rotateInUpRight {
+    from {
+        transform-origin: right bottom;
+        transform: rotate3d(0, 0, 1, -90deg);
+        opacity: 0;
+    }
+    to {
+        transform-origin: right bottom;
+        transform: none;
+        opacity: 1;
+    }
+}
+
+
+/*! CSS Used fontfaces */
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url(https://preview.colorlib.com/theme/cozastore/fonts/Poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url(https://preview.colorlib.com/theme/cozastore/fonts/Poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: PlayfairDisplay-Bold;
+    src: url(https://preview.colorlib.com/theme/cozastore/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf);
+}

@@ -1,0 +1,13 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.style {
+    background-image: url(images/xslide-02.jpg.pagespeed.ic.__MQeyG5T4.webp);
+    width: 1404px;
+    position: relative;
+    left: -1404px;
+    top: 0px;
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 1000ms ease 0s;
+}

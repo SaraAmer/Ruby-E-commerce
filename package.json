@@ -1,5 +1,7 @@
 {
   "name": "E-commerce",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "eslint": "^7.26.0"
+  }
 }
