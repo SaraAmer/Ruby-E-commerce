@@ -1,0 +1,40 @@
+<h1>User profile</h1>
+
+ <%# <div class="conatiner mb-5 border border-primary" > %>
+<%# <% if user_signed_in? %>
+    <%# <%=  current_user.name %> <br> 
+    <%# <%=  current_user.email %>  
+<%# </div> %>
+<%# <%= image_tag('https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-02-512.png',:size => "260x180") %> 
+
+<%# <% end %>     
+
+<% if user_signed_in? %>
+ <div class="card">
+ <%= image_tag('https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-02-512.png',:size => "260x180") %> 
+
+  <div class="container">
+    <h4 style=" text-align: center;"><b> Your Name:<%=  current_user.name %> </b> <br>
+      Your email: <b><%=  current_user.email %></b></h4>
+  </div>
+</div> 
+<% end %>  
+
+
+<style>
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px !important; 
+}
+</style>

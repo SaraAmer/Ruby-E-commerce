@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECommerce</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+<%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  </head>
+
+  <body>
+      <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+<h1 class="logo">E-commerce Store</h1>
+    <ul class="list">
+        <li class="list-item active">
+           <a style="text-decoration:none"  href="<%= root_path %>">Home </a>
+        </li>
+        <li class="list-item">
+        
+          <a style="text-decoration:none"  href="<%= products_path %>">Shop</a>
+
+        </li>
+        <li class="list-item">
+            Features
+        </li>
+     
+                 <li class="list-item search">
+               <i class="fas fa-search"></i>
+
+        </li>
+             <li class="list-item login">
+              
+             <a href="<%= new_user_session_path %>"> <i class="fas fa-sign-in-alt"></i></a>
+   </li>
+              
+  <% if user_signed_in? %>
+  <li > <%= link_to current_user.name, user_index_path %></li>
+  <li> <%= link_to 'Logout', destroy_user_session_path , method: :delete %></li>
+  <% else %>
+  <li> <%= link_to 'Sign Up', new_user_registration_path %> </li>
+  <li> <%= link_to 'Login', new_user_session_path %> </li>
+  <% end %>
+
+       
+    </ul>
+
+  
+
+
+    <%= yield %>
+
+        <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
+  </body>
+</html>

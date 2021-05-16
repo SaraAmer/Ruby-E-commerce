@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// @import "font-awesome";
+// @import "/";
+// @import "bootstrap";
+// @import "tether";
+
+body {
+  background-color: #ccc;
+}
+
+.logo {
+  display: inline-block;
+  font-size: 20px;
+  color: #000;
+}
+
+ul {
+  display: inline-block;
+}
+
+.list {
+  margin-bottom: 50px;
+}
+
+.list-item {
+  font-size: 15px;
+  color: #000;
+  transition: ease-in-out 0.5s;
+  display: inline-block;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.list-item:hover,
+.list-item.active {
+  color: #717fe0;
+}
+
+.login {
+  text-align: right;
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+}
+
+.search {
+  text-align: right;
+  position: absolute;
+  right: 50px;
+  font-size: 20px;
+}
+
+.a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #717fe0;
+  background-color: #ccc;
+}
