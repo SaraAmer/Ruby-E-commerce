@@ -67,9 +67,18 @@
               <i class="fas fa-shopping-cart"> </i>
               </li>
             </a>
+
+
+           
+   <% Store.accessible_by(current_ability).each do |store| %>
+<li class="list-item">
+<a href ="<%= store_path(store)%>">
+<%= store.name %>
+</a>
+</li>
+<% end %>
+
 <li > 
-
-
 <div class="dropdown ">
   <button class="btn navbar-inverse dropdown-toggle " type="button" data-toggle="dropdown">
   <%if current_user.avatar.attached? %>
@@ -101,6 +110,10 @@
 
     <%= yield %>
 
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
   </body>
+
 </html>
