@@ -1,18 +1,93 @@
 <!DOCTYPE html>
+    <style>
+.mini-avatar {
+  vertical-align: middle;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+
+ border-style:solid;
+ border-color:#D3D3D3;
+ border-width:4px
+
+ 
+}
+    </style>
+
 <html>
   <head>
     <title>ECommerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
   </head>
 
   <body>
       <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 
+<h1 class="logo">E-commerce Store</h1>
+    <ul class="list">
+        <li class="list-item active">
+           <a style="text-decoration:none"  href="<%= root_path %>">Home </a>
+        </li>
+        <li class="list-item">
+        
+          <a style="text-decoration:none"  href="<%= products_path %>">Shop</a>
+
+        </li>
+        <li class="list-item">
+            Features
+        </li>
+     
+                 <li class="list-item search">
+               <i class="fas fa-search"></i>
+
+        </li>
+             <li class="list-item login">
+              
+             <a href="<%= new_user_session_path %>"> <i class="fas fa-sign-in-alt"></i></a>
+   </li>
+   <% Store.accessible_by(current_ability).each do |store| %>
+<li class="list-item">
+<a href ="<%= store_path(store)%>">
+<%= store.name %>
+</a>
+</li>
+<% end %>
+<% if user_signed_in? %>
+<li class="list-item " style="float: right; margin:10px; "> 
+<%if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar , class: 'avatar' %>
+
+    <%else%>
+    <%=image_tag gravatar_image_url(current_user.email,size: 100),height: 100,  class: 'mini-avatar' %>
+
+    <%end%>
+
+
+
+
+<%= link_to current_user.name, user_index_path %></li>
+<li class="list-item" style=" margin:10px;"> <%= link_to 'Logout', destroy_user_session_path , method: :delete %></li>
+<% else %>
+<li class="list-item" style="margin:10px;"> <%= link_to 'Sign Up', new_user_registration_path %> </li>
+<li class="list-item" style="margin:10px;"> <%= link_to 'Login', new_user_session_path %> </li>
+<% end %>    
+    </ul>
+
+  
+
+
     <%= yield %>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
   </body>
+
 </html>
