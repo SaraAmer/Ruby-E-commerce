@@ -1,0 +1,10 @@
+<h1>User profile</h1>
+
+ <div class="conatiner mb-5 border border-primary" >
+<% if user_signed_in? %>
+    <%=  current_user.name %> <br>
+    <%=  current_user.email %>
+</div>
+<%= image_tag('https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-02-512.png')  %>
+
+<% end %>    
