@@ -62,22 +62,20 @@
        <% if user_signed_in? %>
        <li>
        <a class="nav-link waves-effect">
-              
-              <i class="fas fa-shopping-cart"> </i>
+        <i class="fas fa-shopping-cart"> </i>
               </li>
             </a>
-
-
+              
            
    <% Store.accessible_by(current_ability).each do |store| %>
-<li class="list-item">
+<li>
 <a href ="<%= store_path(store)%>">
 <%= store.name %>
 </a>
 </li>
 <% end %>
 
-<li > 
+<li>
 <div class="dropdown ">
   <button class="btn navbar-inverse dropdown-toggle " type="button" data-toggle="dropdown">
   <%if current_user.avatar.attached? %>
@@ -110,6 +108,10 @@
 
     <%= yield %>
 
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 38cff771c6c212ee2953dab4a1eef3466b47fca8
         <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
   </body>
 
