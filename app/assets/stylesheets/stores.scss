@@ -3,10 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #side-menue {
     background-color: saddlebrown;
-   display:inline-block
-}
-#side-menue .list .list-item{
 
-    margin-top: 20px;
-   margin-bottom:  20x;
+}
+
+#store-container{
+ width: 20%;
+ background-color: rgb(31, 31, 31);
+
+}
+.menue-item{
+    padding: 25px;
+    color: rgb(226, 224, 224);
+    border-bottom: 1px solid rgb(226, 224, 224)  ;
+    cursor: pointer;
+
+}
+.menue-item a:hover {
+    color:#717fe0;;
+    background-color: rgb(31, 31, 31);
+    text-decoration: none;
+}
+.menue-item a{
+    color: rgb(226, 224, 224);
 }
