@@ -1,0 +1,26 @@
+  
+<div class="container mt-5 mb-5">
+<% if user_signed_in? %>
+    <div class="card ">
+        <div class="row g-2">
+            <div class="col " >
+                <div class="p-3 text-center "> <%if current_user.avatar.attached? %>
+                       <%= image_tag current_user.avatar , class: 'avatar' %>
+
+                            <%else%>
+                           <%=image_tag gravatar_image_url(current_user.email,size: 130),  class: 'avatar' %>
+
+                             <%end%> 
+                    <h4 class="mt-2"><%=  current_user.name %></h4> <span class="d-flex justify-content-center align-items-center">
+                    <div class="content-aboutme mt-3 p-3 ">
+                        <h3> email:<%=  current_user.email %></h3>
+                    </div>
+                    <a href="" type="button"class="btn btn-primary ">updat your profile</a>
+                </div>
+            </div>
+         
+            
+        </div>
+    </div>
+    <% end %>   
+</div>

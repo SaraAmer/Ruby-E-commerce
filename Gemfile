@@ -63,3 +63,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'image_processing' ,'~>1.2'
+
+# gem 'bootstrap', '~> 5.0.0'
+# gem 'jquery-rails'
+
+gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag' 

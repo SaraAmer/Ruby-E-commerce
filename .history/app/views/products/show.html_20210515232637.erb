@@ -1,0 +1,20 @@
+<h1>Products#show</h1>
+<p>Find me in app/views/products/show.html.erb</p>
+
+
+<table>
+  <tr>
+    <th>name</th>
+    <th>category</th>
+    <th>brand</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+  <% @products .each do |product| %>
+    <tr>
+     <td><%= product.title %></td>
+      <td><%= product.text %></td>
+    </tr>
+  <% end %>
+</table>
+

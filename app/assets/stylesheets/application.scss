@@ -14,7 +14,7 @@
  */
 
 body {
-    background-color: #ccc;
+    background-color: rgb(204, 204, 204);
 }
 
 .logo {
@@ -390,4 +390,37 @@ html[xmlns] .slides {
 .product-wrapper:hover .product-action {
     bottom: 20px;
     opacity: 1
+}
+
+.address-content {
+    font-size: 13px
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.541);
+    height: 100%
+}
+
+.content-aboutme span {
+    font-size: 13px
+}
+
+.portfolio-content p {
+    font-size: 13px
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 600
+}
+
+.avatar {
+    margin: 20px;
+    vertical-align: middle;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #D3D3D3;
+    border-width: 4px
 }
