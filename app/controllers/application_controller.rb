@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
     def current_ability
      @current_ability ||= StoreAbility.new(current_user)
    end
-
 #    def index
 #      @stores = Store.all
 #    end
