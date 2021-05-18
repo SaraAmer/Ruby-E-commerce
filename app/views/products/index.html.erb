@@ -12,6 +12,7 @@
       <th>Rate</th>
       <th>Quantity</th>
       <th colspan="3"></th>
+      <th>Buy Now </th>
     </tr>
   </thead>
 
@@ -29,6 +30,23 @@
 
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+
+        <%= form_with url: "/order_products", method: :get do |form| %>
+            <%# <% hidden_field_tag :productId ,product.id%> 
+
+     <%# <% number_field_tag :quantity ,1 %> 
+         <%# <% submit_tag "Add to cart" %> 
+            <%= form.hidden_field :productId, value: product.id %>
+            <%= form.number_field :quantity, value: "1" %>
+       
+        <%= form.submit "Add to cart" %>
+
+ <%end%>
+        
+        
+        
+        </td>
       </tr>
     <% end %>
   </tbody>

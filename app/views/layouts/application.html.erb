@@ -24,14 +24,13 @@
     
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>  
+   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
   
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+   
        <nav class="navbar navbar-inverse navbar-fixed-top ">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -67,7 +66,7 @@
               </li>
             </a>
               
-           
+           7walaaPHOTO
    <% Store.accessible_by(current_ability).each do |store| %>
 <li>
 <a href ="<%= store_path(store)%>">
@@ -104,7 +103,8 @@
 </nav>
 
   
-
+ <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
 
     <%= yield %>
 

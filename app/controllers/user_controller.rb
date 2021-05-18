@@ -1,7 +1,6 @@
 class UserController < ApplicationController
 
 def index
-    
 end
 
 
@@ -24,3 +23,6 @@ private
  end
 
 end
+
+# def edit
+# end
