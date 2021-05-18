@@ -27,6 +27,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :brand_id %>
+    <%= form.text_field :brand_id %>
+  </div>
+
+  <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price %>
   </div>
@@ -39,6 +44,10 @@
   <div class="field">
     <%= form.label :quantity %>
     <%= form.number_field :quantity %>
+  </div>
+  <div>
+   <%= form.label :images %>
+  <%= form.file_field :images, multiple: true, direct_upload: true %>
   </div>
 
   <div class="actions">

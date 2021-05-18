@@ -1,2 +1,0 @@
-class OrderProduct < ApplicationRecord
-end

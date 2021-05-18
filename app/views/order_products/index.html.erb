@@ -1,0 +1,26 @@
+<h1>hello </h1>
+<h1>Products</h1>
+ 
+<table>
+ <thead>
+ <tr>
+ <th>Product</th>
+ <th>Price</th>
+ <th>Quantity</th>
+ <th colspan="3"></th>
+ </tr>
+ </thead>
+ 
+ <tbody>
+ <% @items.each do |item| %>
+ <tr>
+ <td><%= item.product_id %></td>
+ <td><%= item.subtotal %></td>
+ <td><%= item.quantity %></td> 
+ <%# <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td> %>
+ </tr>
+ <% end %>
+ </tbody>
+</table>
+<br>
+ 

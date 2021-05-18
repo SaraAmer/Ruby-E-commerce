@@ -1,14 +1,15 @@
 <!DOCTYPE html>
     <style>
 .mini-avatar {
-  vertical-align: middle;
-  width: 22px;
-  height: 22px;
+ 
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-
- border-style:solid;
+   
+ 
  border-color:#D3D3D3;
- border-width:4px
+ 
+
 
  
 }
@@ -19,67 +20,96 @@
     <title>ECommerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>  
+   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
-<h1 class="logo">E-commerce Store</h1>
-    <ul class="list">
-        <li class="list-item active">
-           <a style="text-decoration:none"  href="<%= root_path %>">Home </a>
-        </li>
-        <li class="list-item">
-        
-          <a style="text-decoration:none"  href="<%= products_path %>">Shop</a>
-
-        </li>
-        <li class="list-item">
-            Features
-        </li>
-     
-                 <li class="list-item search">
-               <i class="fas fa-search"></i>
-
-        </li>
-             <li class="list-item login">
+  
+   
+       <nav class="navbar navbar-inverse navbar-fixed-top ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >E-commerce Store</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a style="text-decoration:none"  href="<%= root_path %>">Home </a></li>
+        <li> <a style="text-decoration:none"  href="<%= products_path %>">Shop</a></li>
+        <li><a href="#"> Features</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-center">
+        <li><form class="navbar-form navbar-left" >
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search">
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
+</form></li></ul>
+ <ul class="nav navbar-nav navbar-right">
+       <% if user_signed_in? %>
+       <li>
+       <a class="nav-link waves-effect">
+        <i class="fas fa-shopping-cart"> </i>
+              </li>
+            </a>
               
-             <a href="<%= new_user_session_path %>"> <i class="fas fa-sign-in-alt"></i></a>
-   </li>
+           7walaaPHOTO
+   <% Store.accessible_by(current_ability).each do |store| %>
+<li>
+<a href ="<%= store_path(store)%>">
+<%= store.name %>
+</a>
+</li>
+<% end %>
 
-<% if user_signed_in? %>
-<li class="list-item " style="float: right; margin:10px; "> 
-<%if current_user.avatar.attached? %>
-    <%= image_tag current_user.avatar , class: 'mini-avatar' %>
-
+<li>
+<div class="dropdown ">
+  <button class="btn navbar-inverse dropdown-toggle " type="button" data-toggle="dropdown">
+  <%if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar , class: 'mini-avatar navbar-nav' %>
     <%else%>
-    <%=image_tag gravatar_image_url(current_user.email,size: 100),height: 100,  class: 'mini-avatar' %>
-
+    <%=image_tag gravatar_image_url(current_user.email,size: 100),height: 100,  class: 'mini-avatar navbar-nav' %>
     <%end%>
-
-
-
-<%= link_to current_user.name, user_index_path %></li>
-<li class="list-item" style=" margin:10px;"> <%= link_to 'Logout', destroy_user_session_path , method: :delete %></li>
+   
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+   <li> <%= link_to current_user.name, user_index_path ,class: 'navbar-nav' %></li>
+  <li > <%= link_to 'Logout', destroy_user_session_path , method: :delete, class: 'navbar-nav' %></li>
 <% else %>
-<li class="list-item" style="margin:10px;"> <%= link_to 'Sign Up', new_user_registration_path %> </li>
-<li class="list-item" style="margin:10px;> <%= link_to 'Login', new_user_session_path %> </li>
-<% end %>    
-    </ul>
+<li > <%= link_to 'Sign Up', new_user_registration_path ,class: 'navbar-nav'%> </li>
+<li ><%= link_to 'Login', new_user_session_path ,class: 'navbar-nav'%> </li>
+<% end %> 
+  
+  </ul>
+</div>
+</li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
 
   
-
+ <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
 
     <%= yield %>
 
+ 
         <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
   </body>
+
 </html>
