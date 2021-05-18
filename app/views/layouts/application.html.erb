@@ -1,21 +1,5 @@
 <!DOCTYPE html>
-    <style>
-.mini-avatar {
- 
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-   
- 
- border-color:#D3D3D3;
- 
-
-
- 
-}
-    </style>
-
-<html>
+    <html>
   <head>
     <title>ECommerce</title>
     <%= csrf_meta_tags %>
@@ -66,7 +50,7 @@
               </li>
             </a>
               
-           7walaaPHOTO
+           <%# 7walaaPHOTO %>
    <% Store.accessible_by(current_ability).each do |store| %>
 <li>
 <a href ="<%= store_path(store)%>">
