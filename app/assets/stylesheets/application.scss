@@ -13,10 +13,6 @@
 
  */
 
-body {
-    
-}
-
 .logo {
     display: inline-block;
     font-size: 20px;
@@ -427,27 +423,35 @@ html[xmlns] .slides {
 
 ///////////////////////////////////////// store/////////////////////////////////
 #side-menue {
-  background-color: saddlebrown;
-
+    background-color: saddlebrown;
 }
 
-#store-container{
-width: 20%;
-background-color: rgb(31, 31, 31);
-
+#store-container {
+    width: 20%;
+    background-color: rgb(31, 31, 31);
 }
-.menue-item{
-  padding: 25px;
-  color: rgb(226, 224, 224);
-  border-bottom: 1px solid rgb(226, 224, 224)  ;
-  cursor: pointer;
 
+.menue-item {
+    padding: 25px;
+    color: rgb(226, 224, 224);
+    border-bottom: 1px solid rgb(226, 224, 224);
+    cursor: pointer;
 }
+
 .menue-item a:hover {
-  color:#717fe0;;
-  background-color: rgb(31, 31, 31);
-  text-decoration: none;
+    color: #717fe0;
+    ;
+    background-color: rgb(31, 31, 31);
+    text-decoration: none;
 }
-.menue-item a{
-  color: rgb(226, 224, 224);
+
+.menue-item a {
+    color: rgb(226, 224, 224);
+}
+
+.mini-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: #D3D3D3;
 }
