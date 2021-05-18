@@ -1,4 +1,3 @@
-<h1> create product order </h1>
 <h1>hello </h1>
 <h1>Products</h1>
  
@@ -13,14 +12,15 @@
  </thead>
  
  <tbody>
- <%  @products.each do |product| %>
+ <% @items.each do |item| %>
  <tr>
- <td><%= product.product_id %></td>
- <td><%= product.subtotal %></td>
- <td><%= product.quantity %></td> 
+ <td><%= item.product_id %></td>
+ <td><%= item.subtotal %></td>
+ <td><%= item.quantity %></td> 
  <%# <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td> %>
  </tr>
  <% end %>
  </tbody>
 </table>
 <br>
+ 
