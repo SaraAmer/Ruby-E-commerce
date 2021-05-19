@@ -24,8 +24,10 @@
                        <%if current_user.avatar.attached? %>
                            <%= image_tag current_user.avatar , class: 'avatar' %>
                        <%else%>
-                           <%=image_tag gravatar_image_url(current_user.email,size: 130),  class: 'avatar' %>
-                        <%end%>
+                           <%= image_tag ('https://cdn2.vectorstock.com/i/1000x1000/98/11/girl-icon-flat-single-avatarpeaople-icon-from-vector-14449811.jpg') , class: 'avatar'%>
+
+                         
+                          <%end%>
                          </div>
                           <h4 style="text-align:center"><%=  current_user.name %></h4> 
                           <%=f.file_field :avatar, style:"margin:5px ;text-align:center"%> 

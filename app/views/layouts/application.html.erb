@@ -67,8 +67,8 @@
     <p style="color:white;"><%= current_user.name %>
     <%= image_tag current_user.avatar , class: 'mini-avatar navbar-nav' %></p>
     <%else%>
-    <%= current_user.name %>
-    <%=image_tag gravatar_image_url(current_user.email,size: 100),height: 100,  class: 'mini-avatar navbar-nav' %>
+  <%= image_tag ('https://cdn2.vectorstock.com/i/1000x1000/98/11/girl-icon-flat-single-avatarpeaople-icon-from-vector-14449811.jpg') , class: 'mini-avatar navbar-nav'%>
+
     <%end%>
    
   <span class="caret"></span></button>
