@@ -69,9 +69,12 @@ ActiveRecord::Schema.define(version: 2021_05_15_232227) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "userid"
+    t.bigint "user_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_carts_on_product_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -153,6 +156,8 @@ ActiveRecord::Schema.define(version: 2021_05_15_232227) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carts", "products"
+  add_foreign_key "carts", "users"
   add_foreign_key "productimages", "products"
   add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"

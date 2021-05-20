@@ -332,7 +332,8 @@ html[xmlns] .slides {
 .product-wrapper,
 .product-img {
     overflow: hidden;
-    position: relative
+    position: relative;
+    height: 400px;
 }
 
 .mb-45 {
@@ -431,10 +432,22 @@ html[xmlns] .slides {
 
 }
 
-#store-container{
+#store-menu{
 width: 20%;
+
 background-color: rgb(31, 31, 31);
 
+}
+#store-container{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.store-content{
+    width: 80%;
+  
 }
 .menue-item{
   padding: 25px;
