@@ -15,7 +15,8 @@
 
   <body>
   
-   
+    <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
        <nav class="navbar navbar-inverse navbar-fixed-top ">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -29,7 +30,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a style="text-decoration:none"  href="<%= root_path %>">Home </a></li>
-        <li> <a style="text-decoration:none"  href="<%= products_path %>">Shop</a></li>
+        <li> <a style="text-decoration:none"  href="<%= products_path%>">Shop</a></li>
         <li><a href="#"> Features</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-center">
@@ -90,8 +91,7 @@
 </nav>
 
   
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
+
 
     <%= yield %>
 

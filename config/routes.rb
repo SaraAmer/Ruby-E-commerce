@@ -4,8 +4,13 @@ Rails.application.routes.draw do
   get 'order_items/update'
   get 'order_items/destroy'
   root to: 'products#home'
-  resources :products
-  resources :stores
+  resources :stores do 
+    resources :products do
+      member do
+        delete :delete_attachment 
+      end
+    end
+  end  
   devise_for :users
   resources :user
 
@@ -15,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :order
   devise_for :admin_users, ActiveAdmin::Devise.config
+  get "products", to: "products#index" , as: "products"
   ActiveAdmin.routes(self)
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+ 
 end
