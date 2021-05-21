@@ -1,3 +1,4 @@
+<body style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PnhkWpVM5H_6vXxiCZIBKmyKEnAW7SHF_xI_-MtnKccawwN9F1oqNygRvtbj-kAGPcI&usqp=CAU')">
   
 <div class="container mt-5 mb-5">
 <% if user_signed_in? %>
@@ -8,14 +9,14 @@
                        <%= image_tag current_user.avatar , class: 'avatar' %>
 
                             <%else%>
-                           <%=image_tag gravatar_image_url(current_user.email,size: 130),  class: 'avatar' %>
+                         <%= image_tag ('https://cdn2.vectorstock.com/i/1000x1000/98/11/girl-icon-flat-single-avatarpeaople-icon-from-vector-14449811.jpg') , class: 'avatar'  %>
 
                              <%end%> 
                     <h4 class="mt-2"><%=  current_user.name %></h4> <span class="d-flex justify-content-center align-items-center">
                     <div class="content-aboutme mt-3 p-3 ">
                         <h3> email:<%=  current_user.email %></h3>
                     </div>
-                    <a href="" type="button"class="btn btn-primary ">updat your profile</a>
+                    <%= link_to 'updat your profile', edit_user_path(current_user.id) ,class:"btn btn-primary "%>
                 </div>
             </div>
          

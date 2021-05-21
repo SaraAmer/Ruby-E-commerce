@@ -1,0 +1,73 @@
+<body style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PnhkWpVM5H_6vXxiCZIBKmyKEnAW7SHF_xI_-MtnKccawwN9F1oqNygRvtbj-kAGPcI&usqp=CAU')">
+
+<%= form_for @user do |f| %>
+ 
+
+<div class="container card bg-light" style="margin-top:100px">
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h1>Edit Your profile</h1>
+    <div class="row">
+        <div class="col-md-5 " style="border-right:1px solid black;">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                       <%if current_user.avatar.attached? %>
+                           <%= image_tag current_user.avatar , class: 'avatar' %>
+                       <%else%>
+                           <%= image_tag ('https://cdn2.vectorstock.com/i/1000x1000/98/11/girl-icon-flat-single-avatarpeaople-icon-from-vector-14449811.jpg') , class: 'avatar'%>
+
+                         
+                          <%end%>
+                         </div>
+                          <h4 style="text-align:center"><%=  current_user.name %></h4> 
+                          <%=f.file_field :avatar, style:"margin:5px ;text-align:center"%> 
+                      </div>
+                      
+                     <div class="col-md-6">
+                       <div class="p-3 py-5" >
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                       <%= link_to "Back", user_index_path %>
+                    </div>
+                   
+                </div>
+                <div class="row " >
+                    <div class="col-md-6"><div class="field">
+    
+    <%= f.label :name %><br />
+    <%= f.text_field :name %></div></div>
+    <div class="col-md-6"><div class="field">
+                   <%= f.label :email %><br />
+                       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                         </div></div>
+
+  
+                    
+                </div>
+               
+                    
+      
+
+
+                  
+               
+                <div  style="margin:5px">
+                  <%= f.submit "Save change" , class:"btn btn-primary profile-button " %>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+</body>
+            
