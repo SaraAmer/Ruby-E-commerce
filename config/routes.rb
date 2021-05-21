@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to: 'products#home'
   resources :stores do 
-    resources :products
+    resources :products do
+      member do
+        delete :delete_attachment 
+      end
+    end
   end  
   devise_for :users
   resources :user

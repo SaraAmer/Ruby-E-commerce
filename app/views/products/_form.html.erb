@@ -1,38 +1,81 @@
 <%= render 'stores/sideMenu' %>
 <div class="store-content">
-<%= form_with(model: [ @store, @store.products.build ], local: true) do |form| %>
+<%= form_with(model: [ @store, @product ], local: true , :html => {:class => "form-group"} ) do |form| %>
+ <% if  @product.errors.any? %>
+ <div id="error_explanation">
+ <h2>
+ <%= pluralize( @product.errors.count, "error") %> prohibited
+ this article from being saved:
+ </h2>
+ <ul>
+ <%  @product.errors.full_messages.each do |msg| %>
+ <li><%= msg %></li>
+ <% end %>
+ </ul>
+ </div>
+ <% end %>
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name  , class: "form-control" %>
   </div>
+  <% if @product %>
 
+ <span>
+<%= @product.name%>
+ </span>
+
+ <%end%>
   <div class="field">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
+    <%= form.text_field :category_id , class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :brand_id %>
-    <%= form.text_field :brand_id %>
+    <%= form.text_field :brand_id , class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.text_field :price , class: "form-control" %>
   </div>
 
 
   <div class="field">
     <%= form.label :quantity %>
-    <%= form.number_field :quantity %>
+    <%= form.number_field :quantity , class: "form-control"  %>
   </div>
   <div>
    <%= form.label :images %>
   <%= form.file_field :images, multiple: true, direct_upload: true %>
   </div>
+  <%if @product.images%>
+  	<ul class="preview-thumbnail nav nav-tabs">
+             <% @product.images.each do |file| %>
+                  <div class="col-md-3">
+            <div class="product-wrapper mb-45 text-center">
+                <div class="product-img"> <a href="#" data-abc="true"> <%= image_tag url_for(file) %> </a> <span class="text-center"><i class="fa fa-rupee"></i></span>
+                  
+                     <% if @store %>
+                     <% if can? :read, @store %>
+                      <div class="product-action">
+                       <div class="product-action-style">  
+                        <%= link_to '<i class="fa fa-trash"></i> ', delete_attachment_store_product_path(@store ,file.id),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %></div>
+                        <%# <div class="product-action-style">  <a href="#"> <i class="fa fa-trash"></i> </a> </div> %>
+                    </div>
+                    <%end%>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+						 <%end%>
+						</ul>
+  <%end%>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" style="margin-top:20px">
+    <%= form.submit class: "btn btn-success" %>
   </div>
 <% end %>
 </div>

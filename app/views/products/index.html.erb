@@ -5,7 +5,11 @@
 <div class="container store-content">
  <div class="container d-flex justify-content-center ">
  <div class="row" style="margin-bottom:10px">
- <button class="btn btn-success">ADD New Product</button>
+    <% if @store %>
+    <% if can? :read, @store %>
+ <a class="btn btn-success" href="<%= new_store_product_path(@store)%>">Add New Product</a>
+ <%end%>
+ <%end%>
  </div>
     <div class="row">
    
@@ -15,12 +19,14 @@
             <div class="product-wrapper mb-45 text-center">
                 <div class="product-img"> <a href="#" data-abc="true"> <%= image_tag url_for(product.images[0]) %> </a> <span class="text-center"><i class="fa fa-rupee"></i><%= product.name%></span>
                     <div class="product-action">
-                        <div class="product-action-style"> <a href="#"> <i class="fa fa-eye"></i> </a>  <a href="#"> <i class="fa fa-shopping-cart"></i> </a> </div>
+                        <div class="product-action-style"> <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a>  <a href="#"> <i class="fa fa-shopping-cart"></i> </a> </div>
                     </div>
                      <% if @store %>
                      <% if can? :read, @store %>
                       <div class="product-action">
-                        <div class="product-action-style"> <a href="<%= store_product_path(@store , product)%>"> <i class="fa fa-eye"></i> </a> <a href="<%= edit_store_product_path(@store , product)%>"> <i class="fa fa-pen"></i> </a>  <a href="#"> <i class="fa fa-trash"></i> </a> </div>
+                        <div class="product-action-style"> <a href="<%= store_product_path(@store , product)%>"> <i class="fa fa-eye"></i> </a> <a href="<%= edit_store_product_path(@store , product)%>"> <i class="fa fa-pen"></i> </a>  <%= link_to  store_product_path(@store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
+  <i class="fa fa-trash"></i>
+<% end %> </div>
                     </div>
                     <%end%>
                     <%end%>
