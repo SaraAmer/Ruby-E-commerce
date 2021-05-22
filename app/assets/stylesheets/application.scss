@@ -458,3 +458,289 @@
         border-radius: 50%;
         border-color: #D3D3D3;
     }
+    
+    .carousel-indicators.carousel-indicators--thumbnails li {
+        width: 80px;
+        height: 40px;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+    }
+    
+    .carousel-indicators.carousel-indicators--thumbnails .active {
+        background-color: transparent;
+    }
+    
+    .carousel-indicators.carousel-indicators--thumbnails .active .thumbnail {
+        border-color: #337ab7;
+    }
+    
+    .mt-100 {
+        margin-top: 100px
+    }
+    
+    .product-wrapper,
+    .product-img {
+        overflow: hidden;
+        position: relative;
+        height: 400px;
+    }
+    
+    .mb-45 {
+        margin-bottom: 45px
+    }
+    
+    .product-action {
+        bottom: 0px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        transition: all 0.6s ease 0s
+    }
+    
+    .product-wrapper {
+        border-radius: 10px
+    }
+    
+    .product-img>span {
+        background-color: #fff;
+        box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+        color: #333;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        left: 20px;
+        letter-spacing: 1px;
+        padding: 3px 12px;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 20px
+    }
+    
+    .product-action-style {
+        background-color: #fff;
+        box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+        display: inline-block;
+        padding: 16px 2px 12px
+    }
+    
+    .product-action-style>a {
+        color: #979797;
+        line-height: 1;
+        padding: 0 21px;
+        position: relative
+    }
+    
+    .product-action-style>a.action-plus {
+        font-size: 18px
+    }
+    
+    .product-wrapper:hover .product-action {
+        bottom: 20px;
+        opacity: 1
+    }
+    
+    .address-content {
+        font-size: 13px
+    }
+    
+    .card {
+        background-color: rgba(255, 255, 255, 0.541);
+        height: 100%
+    }
+    
+    .content-aboutme span {
+        font-size: 13px
+    }
+    
+    .portfolio-content p {
+        font-size: 13px
+    }
+    
+    .badge {
+        font-size: 11px;
+        font-weight: 600
+    }
+    
+    .avatar {
+        margin: 20px;
+        vertical-align: middle;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: #D3D3D3;
+        border-width: 4px
+    }
+    
+    ///////////////////////////////////////// store/////////////////////////////////
+    #side-menue {
+        background-color: saddlebrown;
+    }
+    
+    #store-menu {
+        width: 20%;
+        background-color: rgb(31, 31, 31);
+    }
+    
+    #store-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .store-content {
+        width: 80%;
+    }
+    
+    .menue-item {
+        padding: 25px;
+        color: rgb(226, 224, 224);
+        border-bottom: 1px solid rgb(226, 224, 224);
+        cursor: pointer;
+    }
+    
+    .menue-item a:hover {
+        color: #717fe0;
+        ;
+        background-color: rgb(31, 31, 31);
+        text-decoration: none;
+    }
+    
+    .menue-item a {
+        color: rgb(226, 224, 224);
+    }
+    
+    .mini-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border-color: #D3D3D3;
+    }
+    
+    #cart {
+        border-collapse: collapse;
+        padding: 10px;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    #cart td,
+    #cart th {
+        /* border: 1px solid rgb(218, 217, 217);
+    border-spacing: 2px;
+    */
+        border-bottom: 2px solid rgb(218, 217, 217);
+        padding: 20px;
+        text-align: left;
+        width: 20%;
+        position: relative;
+    }
+    
+    #cart th {
+        color: rgb(70, 68, 68);
+        padding: 20px;
+        font-size: 20px;
+    }
+    
+    #cart img {
+        width: 60%;
+    }
+    
+    #cart .fa {
+        font-size: 25px;
+        color: #601f39;
+    }
+    
+    #cart .fa:hover {
+        cursor: pointer;
+        color: red;
+    }
+    
+    #cart .qty {
+        display: inline-block;
+        margin-left: 20px;
+        background-color: #601f39;
+        border-radius: 23px;
+        padding: 0;
+        color: #fff;
+    }
+    
+    #cart .qty .fa-plus,
+    #cart .qty .fa-minus {
+        border-radius: 23px;
+        padding: 10px;
+        margin: 5px;
+        cursor: pointer;
+    }
+    
+    #cart .qty .fa-plus:hover,
+    #cart .qty .fa-minus:hover {
+        background-color: #9b315b;
+        color: #fff;
+    }
+    
+    .cart-action {
+        margin-top: 100px;
+    }
+    
+    .cart-action .content {
+        text-align: right;
+    }
+    
+    .cart-action .content h4 {
+        display: inline-block;
+        font-size: 30px;
+        color: rgb(70, 68, 68);
+    }
+    
+    .cart-action .content span {
+        font-size: 20px;
+        color: rgb(70, 68, 68);
+    }
+    
+    .cart-action .content button {
+        border-radius: 23px;
+        background-color: #601f39;
+        outline: none;
+        border: none;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+        padding: 6px 14px;
+        transition: ease-in-out 0.5s;
+        margin-left: 10px;
+    }
+    
+    .cart-action .content button:hover {
+        background-color: #9b315b;
+    }
+    
+    .total {
+        margin-right: 65px;
+    }
+    
+    // -------------footer--------------------------
+    .footer {
+        bottom: 0;
+        padding: 0;
+        clear: both;
+        position: relative;
+        margin-top: 20px;
+        background-color: #252627;
+        text-align: center;
+        color: #fff;
+    }
+    
+    .row-1 {
+        background-color: #282929 !important
+    }
+    
+    .row-2 {
+        background-color: #1c1d1d !important
+    }
