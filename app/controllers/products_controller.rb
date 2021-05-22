@@ -69,6 +69,10 @@ class ProductsController < InheritedResources::Base
  
  redirect_to  new_store_product_path
  end
+ def home 
+  @products = Product.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+  @categories=Category.all
+ end
 
 
     private
