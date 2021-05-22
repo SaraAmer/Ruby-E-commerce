@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  # get 'cart/show'
-  # get 'order_items/create'
-  # get 'order_items/update'
-  # get 'order_items/destroy'
+  get 'search/filter',to: 'products#search',as: "search"
   root to: 'products#home'
   resources :stores do 
     resources :products do
