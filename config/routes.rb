@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   # get '/cart', to:'order_products#index'
   # resources :order_products , path: '/cart/items'
 
-
   resources :order
   devise_for :admin_users, ActiveAdmin::Devise.config
   get "products", to: "products#index" , as: "products"
