@@ -1,11 +1,17 @@
 class CartController < ApplicationController
-        #To show cart
-       #/cart/cartId => find or create
-    #Cart.create(user_id: 1, product_id: 1)
-       #get "cart/:id" , to: "cart#add" , as: "add_cart"
-       def add
-        @product = Product.find(params[:id])
-        Cart.create(user: current_id, product: @product)
-        
-       end
+def index
+    @cart = Cart.find_or_create_by(user: current_user)
+    @products = @cart.products
+end
+def create
+    @product = Product.find(params[:product])
+    @cart = Cart.find_or_create_by(user: current_user)
+    @cart.products << @product
+    puts"=============================================="
+    puts params[:user_id]
+    puts params[:product]
+    puts "============================================="
+end
+
+
 end

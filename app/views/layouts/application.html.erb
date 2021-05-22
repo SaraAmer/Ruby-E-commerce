@@ -46,7 +46,7 @@
  <ul class="nav navbar-nav navbar-right">
        <% if user_signed_in? %>
        <li>
-       <a class="nav-link waves-effect">
+       <a class="nav-link waves-effect" href = "<%= user_cart_index_path(current_user)%>">
         <i class="fas fa-shopping-cart"> </i>
               </li>
             </a>

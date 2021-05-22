@@ -1,0 +1,42 @@
+<h1>Cart </h1>
+ <table id="cart" class="products">
+        <tr class="header">
+             <th> </th>
+            <th>Product </th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+ <% @products.each do |product| %>
+        <tr>
+            <td>
+                <%= image_tag url_for(product.images[0]) %>
+            </td>
+            <td><h4><%= product.name%></h4></td>
+            <td><%= product.price%></td>
+            <td>2
+                <div class="qty">
+                    <i class="fas fa-plus"></i> <i class="fas fa-minus"></i>
+                </div>
+            </td>
+            <td>400$</td>
+            <td class="actions">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+
+            </td>
+        </tr>
+       <%end%>
+    </table>
+   <div class="cart-action">
+        <div class="content">
+            <div class="total">
+                <h4>Total : </h4> <span>$1000</span>
+
+            </div>
+            <button>Complete Purchase > </button>
+        </div>
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
