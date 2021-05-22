@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/filter',to: 'products#search'
   get 'cart/show'
   get 'order_items/create'
   get 'order_items/update'

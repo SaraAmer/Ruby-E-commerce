@@ -1,57 +1,36 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
+<%# ******************************* %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Store</th>
-      <th>Category</th>
-      <th>Price</th>
-      <th>Rate</th>
-      <th>Quantity</th>
-      <th colspan="3"></th>
-      <th>Buy Now </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.store.name %></td>
-        <td><%= product.category.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.rate %></td>
-        <td><%= product.quantity %></td>
-        <td><%= link_to 'Show', product %></td>
-        <%# <td><%= link_to 'add To cart ',  %></td>
-
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td>
-
-        <%= form_with url: "/cart/items", method: :post do |form| %>
-            <%# <% hidden_field_tag :productId ,product.id%> 
-       <%# <%=  form_with(model: @order_products, url: order_products_path) do |form| %> %>
-     <%# <% number_field_tag :quantity ,1 %> 
-         <%# <% submit_tag "Add to cart" %> 
-            <%= form.hidden_field :product_id, value: product.id %>
-            <%= form.number_field :quantity, value: "1" %>
-       
-        <%= form.submit "Add to cart" %>
-
- <%end%>
-        
-        
-        
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_product_path %>
+<%# ------------------------------------------------------------ %>
+       <form class="form-inline my-2 my-lg-0 d-flex" action="/search/filter" method="get" accept-charset="UTF-8">
+ <div>
+ <div>
+    <input type="text" class="form-control" placeholder="Search" name="s" id="s">
+    <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid "><i class="fa fa-search" style="color: #000"></i></button>
+ </div>
+    <select class="custom-select" style="width:140px;" name="category" id="category">
+     <option value="All">All categories</option>
+      <%@categories.each do |category|%>
+       <option value=<%=category.id%>><%=category.name%></option>
+        <%end%> 
+        </select>
+        <select class="custom-select" style="width:140px;" name="brand" id="brand">
+        <option value="All">All Brands</option>
+         <%@brands.each do |brand|%>
+         <option value=<%=brand.id%>><%=brand.name%></option>
+        <%end%> 
+        </select>
+         <select class="custom-select" style="width:140px;" name="price" id="price">
+        <option value="All">Price</option>
+        <option value="0..9">less than $10</option> 
+        <option value="10..20">10 to 20 </option> 
+        <option value="20">more than 20</option> 
+        </select>
+         <select class="custom-select" style="width:140px;" name="seller" id="seller">
+        <option value="All">All Sellers</option>
+          <%@store.each do |store|%>
+         <option value=<%=store.id%>><%=store.name%></option> 
+         <%end%>  
+        </select>
+</div>
+</form>
