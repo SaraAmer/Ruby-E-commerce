@@ -5,6 +5,7 @@ class ProductsController < InheritedResources::Base
     @brands=Brand.all
     @stores=Store.all
    end
+   
   def index
     @cart = Cart.find_or_create_by(user: current_user)
     @cart_products = @cart.products
@@ -98,16 +99,21 @@ end
    
   ########################################
 def search
-  ##goz2 al search
-  if params[:s]== "" and  params[:category]== "All"  and  params[:price]== "All" and params[:seller]== "All"
-     redirect_to :controller => 'products', :action => 'index'
-  end
-  # if params[:s] != ""
-  #   if params[:category]== "All"  and  params[:price]== "All" and params[:seller]== "All"
-  #     @products=Product.where("name LIKE ?","%"+params[:s]+"%")
-  #     # puts "heeeeeeeeeeeeeeeeeeeeeeeeere+#{@products.inspect}"
-  #   end
-  # end
+  if params[:s] == "" 
+    redirect_to :controller => 'products', :action => 'index'
+ end
+
+ if params[:s] != ""
+   # if params[:category]== "All"  and  params[:price]== "All" and params[:seller]== "All"
+     @products=Product.where("name LIKE ?","%"+params[:s]+"%")
+     # puts "heeeeeeeeeeeeeeeeeeeeeeeeere+#{@products.inspect}"
+   # end
+ end
+end
+ 
+def filter
+  
+ 
   ##goz2 al filter
   #####################################################
   if params[:category] == "All" and params[:brand] != "All" and params[:price] == "All" and params[:seller] == "All"
@@ -194,7 +200,7 @@ end
 end
 #################################################################
 end
-  
+
   private
   def product_params
   params.require(:product).permit(:name, :category_id, :price, :rate, :quantity ,:brand_id, :description,images: [] )
