@@ -74,6 +74,8 @@ class ProductsController < InheritedResources::Base
   @categories=Category.all
  end
 
+ def add_to_cart
+ end
 
     private
     def product_params
