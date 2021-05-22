@@ -1,65 +1,73 @@
 class ProductsController < InheritedResources::Base
+  before_action :authenticate_user!
   before_action do
     @categories=Category.all   
     @brands=Brand.all
-    @store=Store.all
+    @stores=Store.all
 end
-  before_action :authenticate_user!
+
   def index
-    @cart_products = current_user.cart.products
+  @cart = Cart.find_or_create_by(user: current_user)
   
-    if params[:store_id] 
-      @store = Store.find(params[:store_id])
-      @products = Product.where(store_id: params[:store_id])   
-    else     
-      @products = Product.all
-    end  
+  @cart_products = @cart.products
+  
+  if params[:store_id] 
+  @store = Store.find(params[:store_id])
+  @products = Product.where(store_id: params[:store_id]) 
+  else 
+  @products = Product.all
+  end 
   end
-  def show
-    @product = Product.find(params[:id])
-    # @products = Product.find(1)
-  end  
   def storeProducts
-    Product.where(store_id: params[:store_id])
+  Product.where(store_id: params[:store_id])
   end
-
-
+  
   def new
-    @store = Store.find(params[:store_id])
-    @product = Product.new
-   
-    #@categories_array = Category.all.map{|category|[category.name , category.id]}
-    
+  @store = Store.find(params[:store_id])
+  @product = Product.new
+  
+  #@categories_array = Category.all.map{|category|[category.name , category.id]}
+  
   end
   def create 
-    @store = Store.find(params[:store_id])
-    @product=  @store.products.create(product_params)
-    if @product.save
-      redirect_to store_product_path(@store,@product)
-    else
-     # @categories_array = Category.all.map{|category|[category.name , category.id]}
-      render 'new'
-    end
-  end
-    def show
-      @product = Product.with_attached_images.find(params[:id])
-    end  
-
-
-
-
+  @store = Store.find(params[:store_id])
+  @product= @store.products.create(product_params)
   
-def create 
-    @product= Product.new(product_params)
- 
-    if @product.save
-      redirect_to @product
-    else
-      render 'edit'
-    end
-end
- 
- def delete_attachment
+  if @product.save
+  redirect_to store_product_path(@store,@product)
+  else
+  # @categories_array = Category.all.map{|category|[category.name , category.id]}
+  
+  
+  render 'new'
+  end
+  end
+  def show
+  @product = Product.with_attached_images.find(params[:id])
+  end
+  
+  def edit 
+  @store = Store.find(params[:store_id])
+  @product = Product.with_attached_images.find(params[:id])
+  
+  end
+  def destroy
+  @product = Product.with_attached_images.find(params[:id])
+  @store = Store.find(params[:store_id])
+  @product.images.purge
+  @product.destroy
+  redirect_to store_products_path(@store)
+  
+  end 
+  def update
+  @product = Product.with_attached_images.find(params[:id])
+  if @product.update(product_params)
+  render 'show'
+  else
+  render 'edit'
+  end
+  end
+  def delete_attachment
   puts "gelllllllllllllllllllllllllllllllllllllo"
   @image = ActiveStorage::Blob.find(params[:id])
   puts "======================================"
@@ -67,21 +75,18 @@ end
   puts "======================================"
   @image.purge
   @store = Store.find(params[:store_id])
- 
- redirect_to  new_store_product_path
- end
- def add_to_cart
- end
- def delete_from_cart
+  
+  redirect_to new_store_product_path
+  end
+  def add_to_cart
+  end
+  def delete_from_cart
   @product = Product.find(params[:id])
   @cart = Cart.find_by(user: current_user)
   @cart.products.delete(@product)
-  
-  
+  end
 
- end
-
-########################################
+  ########################################
 def search
   ##goz2 al search
   if params[:s]== "" and  params[:category]== "All"  and  params[:price]== "All" and params[:seller]== "All"
@@ -102,6 +107,7 @@ def search
   #########################Done#########################
   if params[:category] != "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
     @productCategory=Product.where(category_id: params[:category])
+    # @productCategoryImage = Product.with_attached_images.where(category_id: params[:category])
   end
   ########################Done###########################
   if params[:category] == "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller]  != "All"
@@ -178,13 +184,10 @@ end
 end
 #################################################################
 end
-#############################
-def add_to_cart
-end
-################
-    private
-    def product_params
-      params.require(:product).permit(:name, :category_id, :price, :rate, :quantity ,:brand_id, :description,images: [] )
-    end
-
-end
+  
+  private
+  def product_params
+  params.require(:product).permit(:name, :category_id, :price, :rate, :quantity ,:brand_id, :description,images: [] )
+  end
+  
+ end

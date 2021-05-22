@@ -24,15 +24,20 @@
 <%# ----------------------------------------------------------------- %>
 <% if @productCategory.present? %>
 <%   @productCategory.each do |product| %>
-<%#= product.name %>
-<%#= product.price %>
-<%#= product.rate %>
-<%#= product.quantity %>
+<%= product.name %>
+<%= product.price %>
+<%= product.rate %>
+<%= product.quantity %>
+
 <div class="container d-flex justify-content-center ">
     <div class="row">
         <div class="col-md-3">
             <div class="product-wrapper mb-45 text-center">
-                <div class="product-img"> <a href="#" data-abc="true"> <img src="https://i.imgur.com/tL7ZE46.jpg" alt=""> </a> <span class="text-center"><i class="fa fa-rupee"></i> 43,000</span>
+            <%#  @productCategoryImage.images.each do |file| %>
+              <%# <div class="tab-pane" id="<%= file.id %>  <%#= image_tag url_for(file) %> </div> 
+				<%# end %>
+             
+                <%# <div class="product-img"> <a href="#" data-abc="true"> <img src="https://i.imgur.com/tL7ZE46.jpg" alt=""> </a> <span class="text-center"><i class="fa fa-rupee"></i> 43,000</span> %>
                     <div class="product-action">
                          <div><%= product.name %></div>
                         <div class="product-action-style"> <a href="#"> <i class="fa fa-plus"></i> </a>  <a href="#"> <i class="fa fa-shopping-cart"></i> </a> </div>
@@ -43,8 +48,9 @@
      </div>
   </div>      
 <%# <br> %>
-<%end%>  
 <%end%> 
+<%end%> 
+
 
 <%# --------------------------------------------------------s %>
 <% if @productSellers.present? %>
