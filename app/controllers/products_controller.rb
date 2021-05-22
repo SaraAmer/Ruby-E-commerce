@@ -72,9 +72,27 @@ class ProductsController < InheritedResources::Base
   @product = Product.find(params[:id])
   @cart = Cart.find_by(user: current_user)
   @cart.products.delete(@product)
-  redirect_to products_path
+  redirect_to request.referrer
  end
+def update_cart_quantity
+@product = Product.find(params[:id])
+@cart = Cart.find_by(user: current_user)
+@cart_product = CartsProduct.find_by(cart: @cart , product: @product)
 
+if params[:type] == "plus" 
+  quantity = @cart_product.quantity+1
+else params[:type] == "minus"
+  quantity = @cart_product.quantity-1
+end
+puts "==========================================="
+puts params[:type]
+puts "==========================================="
+@cart_product.update(quantity: quantity)
+redirect_to request.referrer
+
+
+
+end
     private
     def product_params
       params.require(:product).permit(:name, :category_id, :price, :rate, :quantity ,:brand_id, :description,images: [] )

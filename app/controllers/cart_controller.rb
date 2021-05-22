@@ -7,7 +7,8 @@ def create
     @product = Product.find(params[:product])
     @cart = Cart.find_or_create_by(user: current_user)
     @cart.products << @product
-    redirect_to products_path
+    
+    redirect_to request.referrer
     puts"=============================================="
     puts params[:user_id]
     puts params[:product]
