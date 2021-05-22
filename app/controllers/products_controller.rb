@@ -69,7 +69,8 @@ class ProductsController < InheritedResources::Base
  
  redirect_to  new_store_product_path
  end
-
+ def add_to_cart
+ end
 
     private
     def product_params

@@ -11,36 +11,56 @@
  <%end%>
  <%end%>
  </div>
+
+
     <div class="row">
    
     <% @products.each do |product| %>
 
         <div class="col-md-3">
             <div class="product-wrapper mb-45 text-center">
-                <div class="product-img"> <a href="#" data-abc="true"> <%= image_tag url_for(product.images[0]) %> </a> <span class="text-center"><i class="fa fa-rupee"></i><%= product.name%></span>
+                <div class="product-img"> <a href="#" data-abc="true"> 
+
+                <%= image_tag url_for(product.images[0]) %> 
+                </a> 
+                    <span class="text-center"><i class="fa fa-rupee"></i>
+                         <%= product.name%>
+                     </span>   
                     <div class="product-action">
-                        <div class="product-action-style"> <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a>  <a href="#"> <i class="fa fa-shopping-cart"></i> </a> </div>
+                         <div class="product-action-style"> 
+                         <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a> 
+                          <% if can? :read, product.store %>
+                            <a href="<%= edit_store_product_path(product.store , product)%>"> <i class="fa fa-pen"></i> </a>  
+                            <%= link_to  store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-trash"></i>
+                            <% end %>
+                            <%else%>
+                              <% if Cart.where(user_id: current_user.id , product_id: product.id).empty? %>
+                              <%= link_to  user_cart_index_path(current_user , product: product) , method: :post  ,data: { confirm: 'Are you sure?' } do %>
+                             <i class="fa fa-shopping-cart"></i> 
+                             <%end %>
+                              <%else %>
+                             
+                                  <%= link_to  store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-trash"></i>
+                            <% end %>
+                            <% end %>
+                          <%end%>
+                         </div>
                     </div>
-                     <% if @store %>
-                     <% if can? :read, @store %>
-                      <div class="product-action">
-                        <div class="product-action-style"> <a href="<%= store_product_path(@store , product)%>"> <i class="fa fa-eye"></i> </a> <a href="<%= edit_store_product_path(@store , product)%>"> <i class="fa fa-pen"></i> </a>  <%= link_to  store_product_path(@store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
-  <i class="fa fa-trash"></i>
-<% end %> </div>
-                    </div>
-                    <%end%>
-                    <%end%>
+
                 </div>
             </div>
+         
         </div>
   
     
      
     <%end%>
        </div>
-  </div>
 
-</div>
+
+
 <br>
 
 

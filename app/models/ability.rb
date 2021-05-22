@@ -6,6 +6,7 @@ class Ability
   def initialize(user)
     if user.present? 
       can :read, Store, user_id: user.id
+      can :delete_from_cart , Cart , user_id: user.id
    end
     # Define abilities for the passed in user here. For example:
     #
