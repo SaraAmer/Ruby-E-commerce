@@ -69,6 +69,7 @@
 </header>
 
 <div class="container d-flex justify-content-center " >
+
 <% @products.each do |product| %>
     <div class="row">
     
@@ -86,7 +87,20 @@
                 
                 
                     <div class="product-action">
-                        <div class="product-action-style"><a href="<%= store_product_path(product.store , product)%>"><i class="fa fa-eye"></i>  </a> <a>  <i class="fa fa-shopping-cart"></i> </a> </div>
+                        <div class="product-action-style" ><a href="<%= store_product_path(product.store , product)%>"><i class="fa fa-eye"></i>  </a> 
+                        <% if @cart_products.include?(product)%>
+                                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-times" ></i>
+                            <% end %>
+                            
+                              <%else %>
+                               <%= link_to  user_cart_index_path(current_user , product: product) , method: :post  ,data: { confirm: 'Are you sure?' } do %>
+                             <i class="fa fa-shopping-cart"></i> 
+                             <%end %>
+                              
+                            <% end %>
+                          
+                          </div>
                     </div>
                 
                 </div>

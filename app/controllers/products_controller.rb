@@ -1,7 +1,9 @@
 class ProductsController < InheritedResources::Base
   before_action :authenticate_user!
   def index
-    @cart_products = current_user.cart.products
+    @cart = Cart.find_or_create_by(user: current_user)
+ 
+      @cart_products = @cart.products
   
     if params[:store_id] 
       @store = Store.find(params[:store_id])
@@ -72,7 +74,13 @@ class ProductsController < InheritedResources::Base
  redirect_to  new_store_product_path
  end
  def home 
+  @cart = Cart.find_or_create_by(user: current_user)
+ 
+  @cart_products = @cart.products
   @products = Product.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+ 
+  
+  # @product = Product.all.group_by(&:id)
   @categories=Category.all
  end
 
@@ -82,8 +90,6 @@ class ProductsController < InheritedResources::Base
   @product = Product.find(params[:id])
   @cart = Cart.find_by(user: current_user)
   @cart.products.delete(@product)
-  
-  
 
  end
 

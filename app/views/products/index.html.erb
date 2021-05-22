@@ -31,7 +31,7 @@
                             <%else%>
                               <% if @cart_products.include?(product)%>
                                   <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
-                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-times" ></i>
                             <% end %>
                             
                               <%else %>
