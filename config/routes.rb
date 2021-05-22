@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :user
 
-  get '/cart', to:'order_products#index'
-  resources :order_products , path: '/cart/items'
-
+  # get '/cart', to:'order_products#index'
+  # resources :order_products , path: '/cart/items'
+#cart routes
+  get "cart/:id" , to: "cart#add" , as: "add_cart"
 
   resources :order
   devise_for :admin_users, ActiveAdmin::Devise.config
