@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         delete :delete_attachment 
         delete :delete_from_cart
         get :add_to_cart
+        get :update_cart_quantity
       end
     end
   end  
