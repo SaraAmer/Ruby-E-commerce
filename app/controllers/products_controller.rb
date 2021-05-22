@@ -85,7 +85,10 @@ end
   @cart = Cart.find_by(user: current_user)
   @cart.products.delete(@product)
   end
-
+  #######################################
+  def searchedit
+    
+  end
   ########################################
 def search
   ##goz2 al search
@@ -107,7 +110,6 @@ def search
   #########################Done#########################
   if params[:category] != "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
     @productCategory=Product.where(category_id: params[:category])
-    # @productCategoryImage = Product.with_attached_images.where(category_id: params[:category])
   end
   ########################Done###########################
   if params[:category] == "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller]  != "All"
