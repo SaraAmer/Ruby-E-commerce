@@ -6,6 +6,8 @@ class ProductsController < InheritedResources::Base
 end
   before_action :authenticate_user!
   def index
+    @cart_products = current_user.cart.products
+  
     if params[:store_id] 
       @store = Store.find(params[:store_id])
       @products = Product.where(store_id: params[:store_id])   
@@ -69,6 +71,14 @@ end
  redirect_to  new_store_product_path
  end
  def add_to_cart
+ end
+ def delete_from_cart
+  @product = Product.find(params[:id])
+  @cart = Cart.find_by(user: current_user)
+  @cart.products.delete(@product)
+  
+  
+
  end
 
 ########################################

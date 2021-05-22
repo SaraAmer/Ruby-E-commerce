@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :products do
       member do
         delete :delete_attachment 
+        delete :delete_from_cart
         get :add_to_cart
       end
     end
