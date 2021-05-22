@@ -1,22 +1,91 @@
+<%# ---------------------------- %>
+ <%# ---------------------------- %>
+ 
 <p id="notice"><%= notice %></p>
  <% if @store %>
  <%= render 'stores/sideMenu' %>
  <%end %>
 <div class="container store-content">
  <div class="container d-flex justify-content-center ">
+ 
  <div class="row" style="margin-bottom:10px">
+ 
     <% if @store %>
     <% if can? :read, @store %>
  <a class="btn btn-success" href="<%= new_store_product_path(@store)%>">Add New Product</a>
  <%end%>
  <%end%>
  </div>
-
-
+ </div>
+ 
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Filter product</button>
     <div class="row">
-   
-    <% @products.each do |product| %>
+    <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  
 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Filter by</h4>
+        </div>
+        <div class="modal-body">
+        <form class="form-inline my-2 my-lg-0 d-flex" action="/search/filter" method="get" accept-charset="UTF-8">
+      <span >Filter by :<span>
+    <div>
+    <select class="custom-select" style="width:140px;" name="category" id="category">
+     <option value="All">All categories</option>
+      <% @categories.each do |category|%>
+       <option value=<%=category.id%>><%=category.name%></option>
+        <%end%> 
+        </select>
+        <select class="custom-select" style="width:140px;" name="brand" id="brand">
+        <option value="All">All Brands</option>
+         <%@brands.each do |brand|%>
+         <option value=<%=brand.id%>><%=brand.name%></option>
+        <%end%> 
+        </select>
+         <select class="custom-select" style="width:140px;" name="price" id="price">
+        <option value="All">Price</option>
+        <option value="0..9">less than $10</option> 
+        <option value="10..20">10 to 20 </option> 
+        <option value="20">more than 20</option> 
+        </select>
+         <select class="custom-select" style="width:140px;" name="seller" id="seller">
+        <option value="All">All Sellers</option>
+          <%@stores.each do |store|%>
+         <option value=<%=store.id%>><%=store.name%></option> 
+         <%end%>  
+         
+        </select>
+        
+
+        <div class="modal-footer">
+         <button class="btn " type="submit" >
+         <i class="fas fa-check-circle" style="color: #000"></i>
+         </button>
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</div>
+
+        </div>
+ </form>   
+       
+    <% @products.each do |product| %>
+ 
         <div class="col-md-3">
             <div class="product-wrapper mb-45 text-center"  style="background-color:#FBFCFF">
                 <div class="product-img"> <a href="#" data-abc="true"> <%= image_tag url_for(product.images[0]) %> </a> <span class="text-center"><i class="fa fa-rupee"></i><%= product.name%></span>
@@ -43,7 +112,7 @@
                           <%end%>
                          </div>
                     </div>
-
+ 
                 </div>
             </div>
          
@@ -58,4 +127,10 @@
 
 <br>
 
+
+
+
+
+
+<%# -------------------------- %>
 
