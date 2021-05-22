@@ -1,8 +1,13 @@
 class ProductsController < InheritedResources::Base
   before_action :authenticate_user!
+  before_action do
+    @categories=Category.all 
+    @brands=Brand.all
+    @stores=Store.all
+   end
   def index
-    @cart_products = current_user.cart.products
-  
+    @cart = Cart.find_or_create_by(user: current_user)
+    @cart_products = @cart.products
     if params[:store_id] 
       @store = Store.find(params[:store_id])
       @products = Product.where(store_id: params[:store_id])   
@@ -13,14 +18,9 @@ class ProductsController < InheritedResources::Base
   def storeProducts
     Product.where(store_id: params[:store_id])
   end
-
-
   def new
     @store = Store.find(params[:store_id])
     @product = Product.new
-   
-    #@categories_array = Category.all.map{|category|[category.name , category.id]}
-    
   end
   def create 
     @store = Store.find(params[:store_id])
@@ -28,10 +28,7 @@ class ProductsController < InheritedResources::Base
 
     if @product.save
       redirect_to store_product_path(@store,@product)
-    else
-     # @categories_array = Category.all.map{|category|[category.name , category.id]}
- 
-      
+    else  
       render 'new'
     end
   end
@@ -60,26 +57,22 @@ class ProductsController < InheritedResources::Base
       render 'edit'
     end
   end
+
  def delete_attachment
-  puts "gelllllllllllllllllllllllllllllllllllllo"
+
   @image = ActiveStorage::Blob.find(params[:id])
-  puts "======================================"
-  puts params[:id]
-  puts "======================================"
   @image.purge
   @store = Store.find(params[:store_id])
- 
  redirect_to  new_store_product_path
  end
+
  def add_to_cart
  end
  def delete_from_cart
   @product = Product.find(params[:id])
   @cart = Cart.find_by(user: current_user)
   @cart.products.delete(@product)
-  
-  
-
+  redirect_to products_path
  end
 
     private
