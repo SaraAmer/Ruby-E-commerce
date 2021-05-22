@@ -328,7 +328,8 @@ html[xmlns] .slides {
 .product-wrapper,
 .product-img {
     overflow: hidden;
-    position: relative
+    position: relative;
+    height: 400px;
 }
 
 .mb-45 {
@@ -426,16 +427,29 @@ html[xmlns] .slides {
     background-color: saddlebrown;
 }
 
-#store-container {
-    width: 20%;
-    background-color: rgb(31, 31, 31);
-}
+#store-menu{
+width: 20%;
 
-.menue-item {
-    padding: 25px;
-    color: rgb(226, 224, 224);
-    border-bottom: 1px solid rgb(226, 224, 224);
-    cursor: pointer;
+background-color: rgb(31, 31, 31);
+
+}
+#store-container{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.store-content{
+    width: 80%;
+  
+}
+.menue-item{
+  padding: 25px;
+  color: rgb(226, 224, 224);
+  border-bottom: 1px solid rgb(226, 224, 224)  ;
+  cursor: pointer;
+
 }
 
 .menue-item a:hover {
