@@ -16,6 +16,7 @@
             <td><%= product.price%> cent </td>
             <td><%= product.carts_products[0].quantity %>
                 <div class="qty">
+                
                  <a style="color: white" 
                  href ="<%= update_cart_quantity_store_product_path(product.store , product , type: 'plus')%>"> 
                    <i class="fas fa-plus"></i> </a> <a style="color: white"
