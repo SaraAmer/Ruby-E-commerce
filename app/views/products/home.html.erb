@@ -1,5 +1,5 @@
 
- 
+
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
         
 
@@ -49,29 +49,46 @@
       </button>
      
     </div>
-     <form class="form-inline my-2 my-lg-0 d-flex" action="/"method="get" accept-charset="UTF-8">
-     <div class="collapse navbar-collapse" name="category" id="category">
+    
+ 
+     <div class="collapse navbar-collapse" id="myNavbar1">
                <ul class="nav navbar-nav ">
               
-            
-             <select class="custom-select" style="width:140px;" name="category" id="category">
          
+              <li>
+               <form class="form-inline my-2 my-lg-0 d-flex" action="/"method="get" accept-charset="UTF-8"> 
+                 <input type="hidden" name="category" value="All">
+             <button class="btn navbar-inverse "type="submit" style="color:white;" selected>All</button>  </form></li> 
+             <li>
+             <form class="form-inline my-2 my-lg-0 d-flex" action="/"method="get" accept-charset="UTF-8">
+               
+                 <select class="custom-select navbar-inverse" style="width:140px;color:white;" name="category" id="category">
+                   <% @categories.each do |category| %>
+           
+         
+            <option class="btn navbar-inverse " style="color:white;" value=<%=category.id%>><%=category.name%></option>
             
-             <option value="All">All categories</option>
-             <% @categories.each do |category| %>
-            <li>
-            
-            <option  value=<%=category.id%>><%=category.name%></option>
-
-            </li>
+          
             <% end %>
+               
+          </select>
+              
+            <button class="btn navbar-inverse"  style="color:white;"type="submit"> <i class="fas fa-check"></i> </button>
            
-           
+ 
+                      
+                          </li>
           </ul>
-           </select>
+     
+          
+          
+             </form>
+        
             </div>
-            <button class="btn " type="submit"><i class="fas fa-check-circle" style="color: #000"></i></button>
-            </form>
+           
+            
+           
+            
 </div>  
 </div>
 </header>
