@@ -67,13 +67,13 @@ end
   @cart = Cart.find_or_create_by(user: current_user)
  
   @cart_products = @cart.products
-  
+ 
  
   if params[:category] != "All" 
     @productCategories=Product.where(category_id: params[:category])
-    @productCategory= @productCategories.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+    @productCategory= @productCategories.all.order("created_at ASC").where("created_at >= ?", Time.now-2.days)
   else
-    @productCategory = Product.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+    @productCategory = Product.all.order("created_at ASC").where("created_at >= ?", Time.now-2.days)
 
     end
  
