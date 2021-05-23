@@ -113,10 +113,7 @@ def search
  end
 
  if params[:s] != ""
-   # if params[:category]== "All"  and  params[:price]== "All" and params[:seller]== "All"
-     @products=Product.where("name LIKE ?","%"+params[:s]+"%")
-     # puts "heeeeeeeeeeeeeeeeeeeeeeeeere+#{@products.inspect}"
-   # end
+     @products=Product.where("name LIKE ?","%"+params[:s]+"%").or (Product.where("description LIKE ?","%"+params[:s]+"%"))
  end
 end
  
@@ -133,7 +130,6 @@ def filter
   #########################Done#########################
   if params[:category] != "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
     @productCategory=Product.where(category_id: params[:category])
-    # @productCategoryImage = Product.with_attached_images.where(category_id: params[:category])
   end
   ########################Done###########################
   if params[:category] == "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller]  != "All"
