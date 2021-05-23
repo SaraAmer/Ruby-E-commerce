@@ -67,7 +67,7 @@ end
   @cart = Cart.find_or_create_by(user: current_user)
  
   @cart_products = @cart.products
-  
+ 
  
   if params[:category] != "All" 
     @productCategories=Product.where(category_id: params[:category])
