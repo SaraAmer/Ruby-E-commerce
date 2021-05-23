@@ -13,13 +13,13 @@
                 <%= image_tag url_for(product.images[0]) %>
             </td>
             <td><h4><%= product.name%></h4></td>
-            <td><%= product.price%></td>
+            <td><%= product.price%>$</td>
             <td><%= product.carts_products[0].quantity %>
                 <div class="qty">
                  <a style="color: white" href ="<%= update_cart_quantity_store_product_path(product.store , product , type: 'plus')%>">   <i class="fas fa-plus"></i> </a> <a style="color: white" href="<%= update_cart_quantity_store_product_path(product.store , product , type: 'minus')%>"> <i class="fas fa-minus"></i></a>
                 </div>
             </td>
-            <td><%= product.price%>$</td>
+            <td><%= product.price * product.carts_products[0].quantity%></td>
             <td class="actions">
                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
                             <i class="fa fa-trash"></i>
@@ -33,7 +33,7 @@
    <div class="cart-action">
         <div class="content">
             <div class="total">
-                <h4>Total : </h4> <span>$1000</span>
+                <h4>Total : </h4> <span><%= @total%></span>
 
             </div>
             <button>Complete Purchase > </button>
