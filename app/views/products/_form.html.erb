@@ -64,10 +64,10 @@
                      <% if can? :read, @store %>
                       <div class="product-action">
                        <div class="product-action-style">  
-                        <%= link_to '<i class="fa fa-trash"></i> ', delete_attachment_store_product_path(@store ,file.id),
+                        <%# <%= link_to '<i class="fa fa-trash"></i> ', delete_attachment_store_product_path(@store ,file.id),
                         method: :delete,
-                        data: { confirm: 'Are you sure?' } %></div>
-                        <%# <div class="product-action-style">  <a href="#"> <i class="fa fa-trash"></i> </a> </div> %>
+                        data: { confirm: 'Are you sure?' } %></div> 
+                        <div class="product-action-style">  <a href="#"> <i class="fa fa-trash"></i> </a> </div>
                     </div>
                     <%end%>
                     <%end%>

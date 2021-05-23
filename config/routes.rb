@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'search/',to: 'products#searchedit',as: "searchedit"
-  get 'search/filter',to: 'products#search',as: "search"
-
+  get 'search/filter',to: 'products#filter',as: "search"
+  get 'search/',to: 'products#search',as: "searchedit"
   root to: 'products#home'
   resources :stores do 
     resources :products do
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
         delete :delete_attachment 
         delete :delete_from_cart
         get :add_to_cart
+        get :update_cart_quantity
       end
     end
   end  

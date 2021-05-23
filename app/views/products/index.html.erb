@@ -1,10 +1,43 @@
 <%# ---------------------------- %>
-     <form class="form-inline my-2 my-lg-0 d-flex" action="/search/filter" method="get" accept-charset="UTF-8">
- <div>
- <div>
-    <input type="text" class="form-control" placeholder="Search" name="s" id="s">
-    <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid "><i class="fa fa-search" style="color: #000"></i></button>
+ 
+<p id="notice"><%= notice %></p>
+ <% if @store %>
+ <%= render 'stores/sideMenu' %>
+ <%end %>
+<div class="container store-content">
+ <div class="container d-flex justify-content-center ">
+ 
+ <div class="row" style="margin-bottom:10px">
+ 
+    <% if @store %>
+    <% if can? :read, @store %>
+ <a class="btn btn-success" href="<%= new_store_product_path(@store)%>">Add New Product</a>
+ <%end%>
+ <%end%>
  </div>
+ </div>
+ 
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Filter product</button>
+    <div class="row">
+    <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Filter by</h4>
+        </div>
+        <div class="modal-body">
+        <form class="form-inline my-2 my-lg-0 d-flex" action="/search/filter" method="get" accept-charset="UTF-8">
+      <span >Filter by :<span>
+    <div>
     <select class="custom-select" style="width:140px;" name="category" id="category">
      <option value="All">All categories</option>
       <% @categories.each do |category|%>
@@ -28,26 +61,28 @@
           <%@stores.each do |store|%>
          <option value=<%=store.id%>><%=store.name%></option> 
          <%end%>  
+         
         </select>
+        
+
+        <div class="modal-footer">
+         <button class="btn " type="submit" >
+         <i class="fas fa-check-circle" style="color: #000"></i>
+         </button>
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
 </div>
-</form>
- <%# ---------------------------- %>
-<p id="notice"><%= notice %></p>
- <% if @store %>
- <%= render 'stores/sideMenu' %>
- <%end %>
-<div class="container store-content">
- <div class="container d-flex justify-content-center ">
- <div class="row" style="margin-bottom:10px">
-    <% if @store %>
-    <% if can? :read, @store %>
- <a class="btn btn-success" href="<%= new_store_product_path(@store)%>">Add New Product</a>
- <%end%>
- <%end%>
- </div>
- 
-    <div class="row">
-   
+</div>
+
+        </div>
+ </form>   
+       
     <% @products.each do |product| %>
  
         <div class="col-md-3">
@@ -64,7 +99,7 @@
                             <%else%>
                               <% if @cart_products.include?(product)%>
                                   <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
-                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-times" ></i>
                             <% end %>
                             
                               <%else %>
@@ -86,8 +121,14 @@
      
     <%end%>
        </div>
+ </div> 
+
 
 <br>
 
+
+
+
+
+
 <%# -------------------------- %>
- 

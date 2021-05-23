@@ -4,15 +4,18 @@
     <title>ECommerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
     
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>  
    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  
   
     <p class="notice"><%= notice %></p>
  <p class="alert"><%= alert %></p>
@@ -32,36 +35,25 @@
         <li> <a style="text-decoration:none"  href="<%= products_path%>">Shop</a></li>
         <li><a href="#"> Features</a></li>
       </ul>
+        <form class="form-inline my-2 my-lg-0 d-flex navbar-form navbar-left" action="/search" method="get" accept-charset="UTF-8">
       <ul class="nav navbar-nav navbar-center">
-        <li><form class="navbar-form navbar-left" >
+        <li>
+        <%# ----------------------------- %>
   <div class="input-group">
-    <%# <input type="text" class="form-control" placeholder="Search"> %>
-    <%# --------------------------------------------------------------- %>
-    <div >
-        <%= form_tag(url: 'search/', method: "get", remote: true) do %>
-          <div >
-                  <div>
-                      <%= text_field_tag :search, '', class:'form-control', placeholder: 'Search...', onkeydown:'products#searchedit'%>
-                        <%= submit_tag "Search", class:'btn btn-dark', id:'search_submit', style:'display:none'%>
-                    </div>
-          </div>
-        <% end %>
-    </div>
-    <%# ---------------------------------------------------------- %>
-       <%# <form class="form-inline my-2 my-lg-0 d-flex" action="/search" method="get" accept-charset="UTF-8">
- 
-    <input type="text" class="form-control" placeholder="Search" name="s" id="s">
-    <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid "><i class="fa fa-search" style="color: #000"></i></button>
-
- </form> %>
-    <%# ------------------------------------------------------------- %>
+    <input type="text" class="form-control" placeholder="Search" name="s" id="s">  
     <div class="input-group-btn">
       <button class="btn btn-default" type="submit">
         <i class="glyphicon glyphicon-search"></i>
       </button>
     </div>
+ 
   </div>
-</form></li></ul>
+  <%#----------------------------  %>
+  
+
+</li>
+</ul>
+   </form>
  <ul class="nav navbar-nav navbar-right">
        <% if user_signed_in? %>
        <li>
@@ -112,9 +104,46 @@
 
 
     <%= yield %>
+ </div> 
+ <footer class="footer nav ">
+        <div class="row justify-content-center ">
+            <div class="col-12">
+                <div class="row row-2">
+                    <div class="col-sm-3 text-md-center">
+                        <h5><span> <i class="fa fa-firefox text-light h4" aria-hidden="true"></i></span><b>E-commerce Store</b></h5>
+                    </div>
+                    <div class="col-sm-6 my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="h4">About us</li>
+                            <li> <span> An online store offering a lot of brands in multiple categories with high quality  </span></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                             <li><i class="fas fa-map-marker-alt h4"></i>Alexandria,Egypte</li>
+                            <li ><i class="fas fa-phone-square-alt h4"></i> +1234566790</li>
+                            <li><i class="fas fa-envelope-square h4"></i>e-commerce.store@company.com</li>
+                        
+                        </ul>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="row  row-1 no-gutters">
+                    <div class="col-sm-3 col-auto text-center"></div>
 
+                    <div class="col-md-3 col-auto text-md-left text-right ">  copyright&#9400;2021 </div>
+                </div>
+            </div>
+        </div>
+    </footer>
  
         <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
   </body>
+  
 
 </html>
