@@ -5,7 +5,11 @@
 					<div class="preview col-md-6">
 						
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="<%= @product.images[0].id %>"> <%= image_tag url_for(@product.images[0]) %></div>
+
+						  <%# <div class="tab-pane active" id="<%= @product.images[0].id %>">
+               <%# <%= image_tag url_for(@product.images[0]) %>
+               <%# </div>  %>
+
 						    <% @product.images.each do |file| %>
                 
               <div class="tab-pane" id="<%= file.id %>">  <%= image_tag url_for(file) %> </div>
@@ -42,27 +46,6 @@
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
 							<%# <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> %>
 
-
-    <%= form_tag charges_path do %>
-    <article>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-
-      <label class="amount">
-        <span>Amount: $5.00</span>
-    </label>
-    </article>
-
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Check Out"
-            data-amount="500"
-            data-locale="auto">
-            </script>
-            <% end %>
             
 						</div>
 					</div>

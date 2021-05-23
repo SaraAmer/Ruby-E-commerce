@@ -1,3 +1,5 @@
+<%# ---------------------------- %>
+ <%# ---------------------------- %>
 <p id="notice"><%= notice %></p>
  <% if @store %>
  <%= render 'stores/sideMenu' %>
@@ -11,36 +13,80 @@
  <%end%>
  <%end%>
  </div>
+ 
     <div class="row">
    
     <% @products.each do |product| %>
-
+ 
         <div class="col-md-3">
-            <div class="product-wrapper mb-45 text-center">
+            <div class="product-wrapper mb-45 text-center"  style="background-color:#FBFCFF">
                 <div class="product-img"> <a href="#" data-abc="true"> <%= image_tag url_for(product.images[0]) %> </a> <span class="text-center"><i class="fa fa-rupee"></i><%= product.name%></span>
                     <div class="product-action">
-                        <div class="product-action-style"> <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a>  <a href="#"> <i class="fa fa-shopping-cart"></i> </a> </div>
+                         <div class="product-action-style"> 
+                         <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a> 
+                          <% if can? :read, product.store %>
+                            <a href="<%= edit_store_product_path(product.store , product)%>"> <i class="fa fa-pen"></i> </a>  
+                            <%= link_to  store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-trash"></i>
+                            <% end %>
+                            <%else%>
+                              <% if @cart_products.include?(product)%>
+                                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-trash"></i>
+                            <% end %>
+                            
+                              <%else %>
+                               <%= link_to  user_cart_index_path(current_user , product: product) , method: :post  ,data: { confirm: 'Are you sure?' } do %>
+                             <i class="fa fa-shopping-cart"></i> 
+                             <%end %>
+                              
+                            <% end %>
+                          <%end%>
+                         </div>
                     </div>
-                     <% if @store %>
-                     <% if can? :read, @store %>
-                      <div class="product-action">
-                        <div class="product-action-style"> <a href="<%= store_product_path(@store , product)%>"> <i class="fa fa-eye"></i> </a> <a href="<%= edit_store_product_path(@store , product)%>"> <i class="fa fa-pen"></i> </a>  <%= link_to  store_product_path(@store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
-  <i class="fa fa-trash"></i>
-<% end %> </div>
-                    </div>
-                    <%end%>
-                    <%end%>
+ 
                 </div>
             </div>
+         
         </div>
   
     
      
     <%end%>
        </div>
-  </div>
 
-</div>
 <br>
 
-
+<%# -------------------------- %>
+      <form class="form-inline my-2 my-lg-0 d-flex" action="/search/filter" method="get" accept-charset="UTF-8">
+ <div>
+ <div>
+    <input type="text" class="form-control" placeholder="Search" name="s" id="s">
+    <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid "><i class="fa fa-search" style="color: #000"></i></button>
+ </div>
+    <select class="custom-select" style="width:140px;" name="category" id="category">
+     <option value="All">All categories</option>
+      <% @categories.each do |category|%>
+       <option value=<%=category.id%>><%=category.name%></option>
+        <%end%> 
+        </select>
+        <select class="custom-select" style="width:140px;" name="brand" id="brand">
+        <option value="All">All Brands</option>
+         <%@brands.each do |brand|%>
+         <option value=<%=brand.id%>><%=brand.name%></option>
+        <%end%> 
+        </select>
+         <select class="custom-select" style="width:140px;" name="price" id="price">
+        <option value="All">Price</option>
+        <option value="0..9">less than $10</option> 
+        <option value="10..20">10 to 20 </option> 
+        <option value="20">more than 20</option> 
+        </select>
+         <select class="custom-select" style="width:140px;" name="seller" id="seller">
+        <option value="All">All Sellers</option>
+          <%@stores.each do |store|%>
+         <option value=<%=store.id%>><%=store.name%></option> 
+         <%end%>  
+        </select>
+</div>
+</form>

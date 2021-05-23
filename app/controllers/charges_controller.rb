@@ -10,7 +10,7 @@ class ChargesController < ApplicationController
   })
 
   charge = Stripe::Charge.create({
-    customer: customer.id,
+    customer: current_user.customer.id,
     amount: @amount,
     description: 'Product Perchase',
     currency: 'usd',
