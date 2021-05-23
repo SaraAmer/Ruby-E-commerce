@@ -6,10 +6,10 @@
 						
 						<div class="preview-pic tab-content">
 
-						  <%# <div class="tab-pane active" id="<%= @product.images[0].id %>">
-               <%# <%= image_tag url_for(@product.images[0]) %>
-               <%# </div>  %>
-
+						   <div class="tab-pane active" id="<%= @product.images[0].id %>">
+               <%= image_tag url_for(@product.images[0]) %>
+               </div> 
+  
 						    <% @product.images.each do |file| %>
                 
               <div class="tab-pane" id="<%= file.id %>">  <%= image_tag url_for(file) %> </div>
@@ -43,6 +43,7 @@
             <h4 class="price">Available Quantity: <span> <%= @product.quantity %></span></h4>
 
 						<div class="action">
+            
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
 							<%# <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> %>
 
