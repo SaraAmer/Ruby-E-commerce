@@ -49,28 +49,38 @@
       </button>
      
     </div>
-     <div class="collapse navbar-collapse" id="myNavbar1">
+     <form class="form-inline my-2 my-lg-0 d-flex" action="/"method="get" accept-charset="UTF-8">
+     <div class="collapse navbar-collapse" name="category" id="category">
                <ul class="nav navbar-nav ">
               
-            <li class=" active">
-              <a class="nav-link waves-effect waves-light" href="<%= root_path %>">All
-                
-              </a>
-            </li>
+            
+             <select class="custom-select" style="width:140px;" name="category" id="category">
+         
+            
+             <option value="All">All categories</option>
              <% @categories.each do |category| %>
             <li>
-              <a class="nav-link waves-effect waves-light"><%= category.name%></a>
+            
+            <option  value=<%=category.id%>><%=category.name%></option>
+
             </li>
             <% end %>
+           
+           
           </ul>
+           </select>
             </div>
+            <button class="btn " type="submit"><i class="fas fa-check-circle" style="color: #000"></i></button>
+            </form>
 </div>  
 </div>
 </header>
 
 <div class="container d-flex justify-content-center " >
 
-<% @products.each do |product| %>
+<%# <% @products.each do |product| %> 
+<% if @productCategory.present? %>
+<%   @productCategory.each do |product| %>
     <div class="row">
     
         <div class="col-md-3" >
@@ -106,7 +116,7 @@
                 </div>
             </div>
         </div>
-       
+        <%end%>
          <%end%>
      </div>
   </div>      

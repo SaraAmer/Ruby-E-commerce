@@ -67,10 +67,17 @@ end
   @cart = Cart.find_or_create_by(user: current_user)
  
   @cart_products = @cart.products
-  @products = Product.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
-  @categories=Category.all
+  
  
- end
+  if params[:category] != "All" 
+    @productCategories=Product.where(category_id: params[:category])
+    @productCategory= @productCategories.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+  else
+    @productCategory = Product.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+
+    end
+ 
+end
 
  def add_to_cart
  end
@@ -99,6 +106,8 @@ end
    
   ########################################
 def search
+  @cart = Cart.find_or_create_by(user: current_user)
+  @cart_products = @cart.products
   if params[:s] == "" 
     redirect_to :controller => 'products', :action => 'index'
  end
@@ -112,7 +121,8 @@ def search
 end
  
 def filter
-  
+  @cart = Cart.find_or_create_by(user: current_user)
+  @cart_products = @cart.products
  
   ##goz2 al filter
   #####################################################

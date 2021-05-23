@@ -2,11 +2,46 @@
 <h1>The Result </h1>
 <hr>
 <% if @products.present? %>
+
  <% @products.each do |product| %>
- <%= product.name %>
- <%= product.price %>
- <%= product.rate %>
- <%= product.quantity %>
- <br>
+<div class="container d-flex justify-content-center " >
+<div class="row">
+    
+        <div class="col-md-3" >
+            <div class="product-wrapper mt-7 text-center" style="background-color:#FBFCFF">
+              <%  product.images.each do |file| %>
+                <div class="product-img " ><%= image_tag url_for(file) %> <span class="text-center mb-45"><i class="fa fa-rupee"> <%= product.name %></i></span>
+                   <% end %>
+                    <div class="product-detail-container p-2">
+                    <div class="card-body pt-0 px-0 new-price">
+        
+                        <h4>&dollar;<%=  product.price%></h4>
+                    </div>
+                    </div>
+                
+                
+                    <div class="product-action">
+                        <div class="product-action-style" ><a href="<%= store_product_path(product.store , product)%>"><i class="fa fa-eye"></i>  </a> 
+                        <% if @cart_products.include?(product)%>
+                                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-times" ></i>
+                            <% end %>
+                            
+                              <%else %>
+                               <%= link_to  user_cart_index_path(current_user , product: product) , method: :post  ,data: { confirm: 'Are you sure?' } do %>
+                             <i class="fa fa-shopping-cart"></i> 
+                             <%end %>
+                              
+                            <% end %>
+                          
+                          </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+
+ 
+ 
  <%end%> 
 <% end %>
