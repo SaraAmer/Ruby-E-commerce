@@ -1,149 +1,180 @@
 <!DOCTYPE html>
-    <html>
-  <head>
-    <title>ECommerce</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>  
-   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<html>
+    <head>
+        <title>ECommerce</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-  <body>
-  
-  
-    <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
-       <nav class="navbar navbar-inverse navbar-fixed-top ">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" >E-commerce Store</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a style="text-decoration:none"  href="<%= root_path %>">Home </a></li>
-        <li> <a style="text-decoration:none"  href="<%= products_path%>">Shop</a></li>
-        <li><a href="#"> Features</a></li>
-      </ul>
-        <form class="form-inline my-2 my-lg-0 d-flex navbar-form navbar-left" action="/search" method="get" accept-charset="UTF-8">
-      <ul class="nav navbar-nav navbar-center">
-        <li>
-        <%# ----------------------------- %>
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search" name="s" id="s">  
-    <div class="input-group-btn">
-      <button class="btn btn-default" type="submit">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
-    </div>
- 
-  </div>
-  <%#----------------------------  %>
-  
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-</li>
-</ul>
-   </form>
- <ul class="nav navbar-nav navbar-right">
-       <% if user_signed_in? %>
-       <li>
-       <a class="nav-link waves-effect" href = "<%= user_cart_index_path(current_user)%>">
-        <i class="fas fa-shopping-cart"> </i>
-              </li>
-            </a>
-              
-           <%# 7walaaPHOTO %>
-   <% Store.accessible_by(current_ability).each do |store| %>
-<li>
-<a href ="<%= store_path(store)%>">
-<%= store.name %>
-</a>
-</li>
-<% end %>
-
-<li>
-<div class="dropdown ">
-  <button class="btn navbar-inverse dropdown-toggle " type="button" data-toggle="dropdown">
-  <%if current_user.avatar.attached? %>
-    <p style="color:white;"><%= current_user.name %>
-    <%= image_tag current_user.avatar , class: 'mini-avatar navbar-nav' %></p>
-    <%else%>
-  <%= image_tag ('https://cdn2.vectorstock.com/i/1000x1000/98/11/girl-icon-flat-single-avatarpeaople-icon-from-vector-14449811.jpg') , class: 'mini-avatar navbar-nav'%>
-
-    <%end%>
-   
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-   <li> <%= link_to 'My Profile', user_index_path ,class: 'navbar-nav' %></li>
-  <li > <%= link_to 'Logout', destroy_user_session_path , method: :delete, class: 'navbar-nav' %></li>
-<% else %>
-<li > <%= link_to 'Sign Up', new_user_registration_path ,class: 'navbar-nav'%> </li>
-<li ><%= link_to 'Login', new_user_session_path ,class: 'navbar-nav'%> </li>
-<% end %> 
-  
-  </ul>
-</div>
-</li>
-
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <script src="https://js.stripe.com/v3/"></script>
 
 
-    <%= yield %>
- </div> 
- <footer class="footer nav ">
-        <div class="row justify-content-center ">
-            <div class="col-12">
-                <div class="row row-2">
-                    <div class="col-sm-3 text-md-center">
-                        <h5><span> <i class="fa fa-firefox text-light h4" aria-hidden="true"></i></span><b>E-commerce Store</b></h5>
-                    </div>
-                    <div class="col-sm-6 my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                            <li class="h4">About us</li>
-                            <li> <span> An online store offering a lot of brands in multiple categories with high quality  </span></li>
-                            
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                             <li><i class="fas fa-map-marker-alt h4"></i>Alexandria,Egypte</li>
-                            <li ><i class="fas fa-phone-square-alt h4"></i> +1234566790</li>
-                            <li><i class="fas fa-envelope-square h4"></i>e-commerce.store@company.com</li>
-                        
-                        </ul>
-                    </div>
-                  
+    </head>
+
+    <body>
+
+
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <nav class="navbar navbar-inverse navbar-fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">E-commerce Store</a>
                 </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="row  row-1 no-gutters">
-                    <div class="col-sm-3 col-auto text-center"></div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a style="text-decoration:none" href="<%= root_path %>">Home
+                            </a>
+                        </li>
+                        <li>
+                            <a style="text-decoration:none" href="<%= products_path%>">Shop</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Features</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0 d-flex navbar-form navbar-left" action="/search" method="get" accept-charset="UTF-8">
+                        <ul class="nav navbar-nav navbar-center">
+                            <li>
+                                <%# ----------------------------- %>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="s" id="s">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">
+                                                <i class="glyphicon glyphicon-search"></i>
+                                            </button>
+                                        </div>
 
-                    <div class="col-md-3 col-auto text-md-left text-right ">  copyright&#9400;2021 </div>
+                                    </div>
+                                    <%#----------------------------  %>
+
+
+                                </li>
+                            </ul>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <% if user_signed_in? %>
+                                <li>
+                                    <a class="nav-link waves-effect" href="<%= user_cart_index_path(current_user)%>">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </li>
+                                </a>
+
+                                <%# 7walaaPHOTO %>
+                                <% Store.accessible_by(current_ability).each do |store| %>
+                                    <li>
+                                        <a href="<%= store_path(store)%>">
+                                            <%= store.name %>
+                                        </a>
+                                    </li>
+                                <% end %>
+
+                                <li>
+                                    <div class="dropdown ">
+                                        <button class="btn navbar-inverse dropdown-toggle " type="button" data-toggle="dropdown">
+                                            <%if current_user.avatar.attached? %>
+                                                <p style="color:white;"><%= current_user.name %>
+                                                    <%= image_tag current_user.avatar , class: 'mini-avatar navbar-nav' %></p>
+                                                <%else%>
+                                                <%= image_tag ('https://cdn2.vectorstock.com/i/1000x1000/98/11/girl-icon-flat-single-avatarpeaople-icon-from-vector-14449811.jpg') , class: 'mini-avatar navbar-nav'%>
+
+                                                <%end%>
+
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <%= link_to 'My Profile', user_index_path ,class: 'navbar-nav' %></li>
+                                                <li>
+                                                    <%= link_to 'Logout', destroy_user_session_path , method: :delete, class: 'navbar-nav' %></li>
+                                            <% else %>
+                                                <li>
+                                                    <%= link_to 'Sign Up', new_user_registration_path ,class: 'navbar-nav'%>
+                                                </li>
+                                                <li><%= link_to 'Login', new_user_session_path ,class: 'navbar-nav'%>
+                                                </li>
+                                            <% end %>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <%= yield %>
+            </div>
+            <footer class="footer nav ">
+                <div class="row justify-content-center ">
+                    <div class="col-12">
+                        <div class="row row-2">
+                            <div class="col-sm-3 text-md-center">
+                                <h5>
+                                    <span>
+                                        <i class="fa fa-firefox text-light h4" aria-hidden="true"></i>
+                                    </span>
+                                    <b>E-commerce Store</b>
+                                </h5>
+                            </div>
+                            <div class="col-sm-6 my-sm-0 mt-5">
+                                <ul class="list-unstyled">
+                                    <li class="h4">About us</li>
+                                    <li>
+                                        <span>
+                                            An online store offering a lot of brands in multiple categories with high quality
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-sm-3 my-sm-0 mt-5">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <i class="fas fa-map-marker-alt h4"></i>Alexandria,Egypte</li>
+                                    <li>
+                                        <i class="fas fa-phone-square-alt h4"></i>
+                                        +1234566790</li>
+                                    <li>
+                                        <i class="fas fa-envelope-square h4"></i>e-commerce.store@company.com</li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </footer>
- 
-        <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
-  </body>
-  
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="row  row-1 no-gutters">
+                            <div class="col-sm-3 col-auto text-center"></div>
 
+                            <div class="col-md-3 col-auto text-md-left text-right ">
+                                copyright&#9400;2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>
+        </body>
+
+
+    </html>
 </html>

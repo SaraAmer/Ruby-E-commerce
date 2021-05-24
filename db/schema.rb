@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2021_05_22_202657) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "subtotal"
+    t.integer "unit_price"
     t.index ["order_id"], name: "index_order_products_on_order_id"
     t.index ["product_id"], name: "index_order_products_on_product_id"
   end

@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class CartTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+# test "should not save cart without user_id" do
+#   cart = Cart.new
+#   assert_not cart.save
+# end
 end

@@ -4,7 +4,7 @@
             <th>Product </th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Total</th>
+            <th>Subtotal</th>
             <th>Action</th>
         </tr>
  <% @products.each do |product| %>
@@ -13,13 +13,21 @@
                 <%= image_tag url_for(product.images[0]) %>
             </td>
             <td><h4><%= product.name%></h4></td>
-            <td><%= product.price%></td>
+            <td><%= product.price%> cent </td>
             <td><%= product.carts_products[0].quantity %>
                 <div class="qty">
-                 <a style="color: white" href ="<%= update_cart_quantity_store_product_path(product.store , product , type: 'plus')%>">   <i class="fas fa-plus"></i> </a> <a style="color: white" href="<%= update_cart_quantity_store_product_path(product.store , product , type: 'minus')%>"> <i class="fas fa-minus"></i></a>
+                
+                 <a style="color: white" 
+                 href ="<%= update_cart_quantity_store_product_path(product.store , product , type: 'plus')%>"> 
+                   <i class="fas fa-plus"></i> </a> <a style="color: white"
+                    href="<%= update_cart_quantity_store_product_path(product.store , product , type: 'minus')%>"> 
+                    <i class="fas fa-minus"></i>
+                   </a>
                 </div>
             </td>
-            <td><%= product.price%>$</td>
+            <td>
+            <%# <td>  <%= @cart_product.sub_total  cent%> </td> %>
+
             <td class="actions">
                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
                             <i class="fa fa-trash"></i>
@@ -33,10 +41,30 @@
    <div class="cart-action">
         <div class="content">
             <div class="total">
-                <h4>Total : </h4> <span>$1000</span>
+                <h4>Total : </h4> <span>cent <%=@cart.total%> </span>
 
             </div>
-            <button>Complete Purchase > </button>
+      
+
+    <%= form_tag charges_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Check Out"
+            data-amount=<%=@cart.total%>
+
+
+            data-locale="auto">
+            </script>
+            <% end %>
         </div>
 
     </div>

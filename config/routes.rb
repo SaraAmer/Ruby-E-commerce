@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     resources :cart  , :only =>[:index , :create]
   end
 
+
+
+  resources :charges
   # get '/cart', to:'order_products#index'
   # resources :order_products , path: '/cart/items'
 
