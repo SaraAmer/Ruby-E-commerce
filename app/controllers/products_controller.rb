@@ -5,6 +5,7 @@ class ProductsController < InheritedResources::Base
     @brands=Brand.all
     @stores=Store.all
    end
+   
   def index
     @cart = Cart.find_or_create_by(user: current_user)
     @cart_products = @cart.products
@@ -58,8 +59,25 @@ end
   @image = ActiveStorage::Blob.find(params[:id])
   @image.purge
   @store = Store.find(params[:store_id])
- redirect_to  new_store_product_path
+  redirect_to  new_store_product_path
  end
+ 
+ 
+ def home 
+  @cart = Cart.find_or_create_by(user: current_user)
+ 
+  @cart_products = @cart.products
+  
+ 
+  if params[:category] != "All" 
+    @productCategories=Product.where(category_id: params[:category])
+    @productCategory= @productCategories.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+  else
+    @productCategory = Product.all.order("created_at ASC").where("created_at >= ?", Time.now-1.days)
+
+    end
+ 
+end
 
  def add_to_cart
  end
@@ -88,16 +106,21 @@ end
    
   ########################################
 def search
-  ##goz2 al search
-  if params[:s]== "" and  params[:category]== "All"  and  params[:price]== "All" and params[:seller]== "All"
-     redirect_to :controller => 'products', :action => 'index'
-  end
-  if params[:s] != ""
-    if params[:category]== "All"  and  params[:price]== "All" and params[:seller]== "All"
-      @products=Product.where("name LIKE ?","%"+params[:s]+"%")
-      # puts "heeeeeeeeeeeeeeeeeeeeeeeeere+#{@products.inspect}"
-    end
-  end
+  @cart = Cart.find_or_create_by(user: current_user)
+  @cart_products = @cart.products
+  if params[:s] == "" 
+    redirect_to :controller => 'products', :action => 'index'
+ end
+
+ if params[:s] != ""
+     @products=Product.where("name LIKE ?","%"+params[:s]+"%").or (Product.where("description LIKE ?","%"+params[:s]+"%"))
+ end
+end
+ 
+def filter
+  @cart = Cart.find_or_create_by(user: current_user)
+  @cart_products = @cart.products
+ 
   ##goz2 al filter
   #####################################################
   if params[:category] == "All" and params[:brand] != "All" and params[:price] == "All" and params[:seller] == "All"
@@ -107,7 +130,6 @@ def search
   #########################Done#########################
   if params[:category] != "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
     @productCategory=Product.where(category_id: params[:category])
-    # @productCategoryImage = Product.with_attached_images.where(category_id: params[:category])
   end
   ########################Done###########################
   if params[:category] == "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller]  != "All"
@@ -184,10 +206,10 @@ end
 end
 #################################################################
 end
-  
+
   private
   def product_params
   params.require(:product).permit(:name, :category_id, :price, :rate, :quantity ,:brand_id, :description,images: [] )
   end
   
- end
+end 

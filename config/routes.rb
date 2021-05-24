@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'search/filter',to: 'products#search',as: "search"
+  get 'search/filter',to: 'products#filter',as: "search"
+  get 'search/',to: 'products#search',as: "searchedit"
   root to: 'products#home'
   resources :stores do 
     resources :products do
