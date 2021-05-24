@@ -5,7 +5,8 @@ var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>");
 
 </script>
 <%= form_for(:order,  :url => order_index_path, html: { role: "form", class: 'cc_form' }) do |f| %>
-
+    <%= f.label :address %>
+    <%= f.text_field :address  , class: "form-control" %>
 
 <%= fields_for( :payment ) do |p| %>
 
