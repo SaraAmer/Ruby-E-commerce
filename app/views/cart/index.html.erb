@@ -25,9 +25,10 @@
                    </a>
                 </div>
             </td>
-            <td>
-            <%# <td>  <%= @cart_product.sub_total  cent%> </td> %>
-
+            <% @cart_total.each do |cart| %>
+            <td><%= cart.subtotal_price %>
+            <%# <td>  <%= @cart_product.sub_total  cent%> </td> 
+             <% end %>
             <td class="actions">
                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
                             <i class="fa fa-trash"></i>
@@ -60,10 +61,12 @@
             data-key="<%%= Rails.configuration.stripe[:publishable_key] %>"
             data-description="Check Out"
             data-amount=<%=@cart.total%>
-
+          
 
             data-locale="auto">
+
             </script>
+            
             <% end %>
         </div>
 

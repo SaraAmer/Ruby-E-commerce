@@ -131,7 +131,7 @@ def filter
     puts "########################################################+#{@productBrand.inspect} "
   end
   #########################Done#########################
-  if params[:category] != "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
+  if params[:category] == "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
     @products=Product.where(category_id: params[:category])
   end
   ########################Done###########################
