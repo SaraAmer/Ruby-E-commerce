@@ -1,10 +1,12 @@
+<span> public Key : <%= ENV['STRIPE_PUBLISHABLE_KEY'] %> </span>
+<span> private Key : <%= ENV['STRIPE_SECRET_KEY'] %> </span>
  <table id="cart" class="products">
         <tr class="header">
              <th> </th>
             <th>Product </th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Total</th>
+            <th>Subtotal</th>
             <th>Action</th>
         </tr>
  <% @products.each do |product| %>
@@ -16,7 +18,13 @@
             <td><%= product.price%>$</td>
             <td><%= product.carts_products[0].quantity %>
                 <div class="qty">
-                 <a style="color: white" href ="<%= update_cart_quantity_store_product_path(product.store , product , type: 'plus')%>">   <i class="fas fa-plus"></i> </a> <a style="color: white" href="<%= update_cart_quantity_store_product_path(product.store , product , type: 'minus')%>"> <i class="fas fa-minus"></i></a>
+                
+                 <a style="color: white" 
+                 href ="<%= update_cart_quantity_store_product_path(product.store , product , type: 'plus')%>"> 
+                   <i class="fas fa-plus"></i> </a> <a style="color: white"
+                    href="<%= update_cart_quantity_store_product_path(product.store , product , type: 'minus')%>"> 
+                    <i class="fas fa-minus"></i>
+                   </a>
                 </div>
             </td>
             <td><%= product.price * product.carts_products[0].quantity%></td>
@@ -36,7 +44,29 @@
                 <h4>Total : </h4> <span><%= @total%></span>
 
             </div>
-            <button>Complete Purchase > </button>
+      
+
+    <%= form_tag charges_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Check Out"
+            data-amount=<%= @total%>
+          
+
+            data-locale="auto">
+
+            </script>
+            
+            <% end %>
         </div>
 
     </div>
