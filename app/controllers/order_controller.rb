@@ -1,7 +1,10 @@
 class OrderController < ApplicationController
     def index
+      if params[:store_id] 
         @store = Store.find(params[:store_id])
-        @orders = Order.all
+      else     
+        @order = Order.all
+      end  
       end
     
       def show

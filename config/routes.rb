@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   get 'search/',to: 'products#search',as: "searchedit"
   root to: 'products#home'
   resources :stores do 
-    resources :order do 
-     
+    resources :order , :except =>[:create] do 
+
         get :approved_orders
     
-    end
+        end
     resources :products do
       member do
         delete :delete_attachment 
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
     end
   end  
+  resources :order  , :only =>[:index , :create]
   devise_for :users
   resources :user do
     resources :cart  , :only =>[:index , :create]
