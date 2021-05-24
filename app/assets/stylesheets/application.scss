@@ -703,7 +703,7 @@
         color: rgb(70, 68, 68);
     }
     
-    .cart-action .content button {
+    .cart-action .content a {
         border-radius: 23px;
         background-color: #601f39;
         outline: none;
@@ -714,10 +714,10 @@
         cursor: pointer;
         padding: 6px 14px;
         transition: ease-in-out 0.5s;
-        margin-left: 10px;
+        margin-left: 10px
     }
     
-    .cart-action .content button:hover {
+    .cart-action .content a:hover {
         background-color: #9b315b;
     }
     

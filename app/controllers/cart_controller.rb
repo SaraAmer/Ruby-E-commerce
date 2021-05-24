@@ -1,9 +1,6 @@
 class CartController < ApplicationController
 def index
     @cart = Cart.find_or_create_by(user: current_user)
-   # @product = Product.find(params[:id])
-  #  @cart_product=CartsProduct.find(params[:product_id])
-  #  @cart_product =@cart.CartsProduct.product_id
     @cart_total = CartsProduct.all
     @products = @cart.products
     @total = 0 ; 

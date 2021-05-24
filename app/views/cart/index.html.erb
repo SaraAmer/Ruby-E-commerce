@@ -1,5 +1,3 @@
-<span> public Key : <%= ENV['STRIPE_PUBLISHABLE_KEY'] %> </span>
-<span> private Key : <%= ENV['STRIPE_SECRET_KEY'] %> </span>
  <table id="cart" class="products">
         <tr class="header">
              <th> </th>
@@ -42,33 +40,18 @@
         <div class="content">
             <div class="total">
                 <h4>Total : </h4> <span><%= @total%></span>
+      <div>
+
+             <a href=<%= new_charge_path %>>
+               
+                
+                Check out
+                
+               
+                </a>
+                </div>
 
             </div>
       
-
-    <%= form_tag charges_path do %>
-    <article>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-
-    </article>
-
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Check Out"
-            data-amount=<%= @total%>
-          
-
-            data-locale="auto">
-
-            </script>
-            
-            <% end %>
-        </div>
-
-    </div>
-
+</div>
     <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>

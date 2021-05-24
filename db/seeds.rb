@@ -14,42 +14,5 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 # Brand.create!(id: 4,name: 'lego') if Rails.env.development?
 
    
-<<<<<<< HEAD
-# 1.times do |i|
-#     mob = Product.new(
-#       name: 'mob',
-#       store_id: 1,
-#       category_id: 3,
-#       brand_id: 1,
-#       price: 11.99,
-#       rate:5,
-#       quantity:8,
-#     )
-#     lcd = Product.new(
-#       name: 'lcd',
-#       store_id:  1,
-#       price: 7.95,
-#       category_id: 3,
-#       brand_id: 1,
-#       rate:5,
-#       quantity:8,
-#     )
-#     girltoy = Product.new(
-#       name: 'girltoy',
-#       store_id:  1,
-#        price: 3.00,
-#        category_id: 4,
-#        brand_id: 2,
-#        rate:5,
-#        quantity:8,
-#     )
-
-#     mob.save
-#     lcd.save
-#     girltoy.save
-#   end
-=======
-
->>>>>>> cd94a9c2b3a0c584af358d0dcad078f6d6ad5418
   
   

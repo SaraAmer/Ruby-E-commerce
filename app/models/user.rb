@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one :cart
   has_one_attached :avatar
-  
+  has_one :payment
   # after_commit :add_default_avatar, on: %i[create update]
 
   # def avatar_thumbnail
