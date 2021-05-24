@@ -1,5 +1,5 @@
-<h2>All Orders</h2>
 
+<%= render 'stores/sideMenu' %>
 <% @orders.each do |order| %>
   <p>Name: <%= order.user_id %></p>
   <p>id: <%= order.id %></p>
@@ -10,3 +10,28 @@
     <% end %>
   </ul>
 <% end%>
+<div class="store-content">
+  <h1 style="margin-bottom: 50px">List Of orders</h1>
+    <table class="orders-table">
+        <tr class="header">
+            <th>Customer Name</th>
+            <th>Total Prie</th>
+            <th>Order details</th>
+        </tr>
+        <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>200$</td>
+            <td class="details">
+                <button>Details</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Berglunds snabbköp</td>
+            <td>100$</td>
+            <td class="details">
+                <button>Details</button>
+
+            </td>
+        </tr>
+    </table>
+    </div>

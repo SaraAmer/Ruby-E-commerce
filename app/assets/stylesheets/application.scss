@@ -745,3 +745,56 @@
     .row-2 {
         background-color: #1c1d1d !important
     }
+    
+    .orders-table {
+        border-collapse: collapse;
+        padding: 10px;
+        width: 100%;
+    }
+    
+    .orders-table td,
+    .orders-table th {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .orders-table th {
+        background-color: black;
+        color: #fff;
+        padding: 20px;
+        font-size: 20px;
+    }
+    
+    .orders-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    .orders-table tr {
+        transition: ease-in-out 0.5s;
+    }
+    
+    .orders-table tr:hover {
+        background-color: #ddd;
+    }
+    
+    .details {
+        text-align: center;
+    }
+    
+    .details button {
+        border-radius: 23px;
+        background-color: #717fe0;
+        outline: none;
+        border: none;
+        font-size: 15px;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 16px;
+        transition: ease-in-out 0.5s;
+    }
+    
+    .details button:hover {
+        background-color: black;
+    }

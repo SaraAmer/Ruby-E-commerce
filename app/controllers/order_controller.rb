@@ -1,5 +1,6 @@
 class OrderController < ApplicationController
     def index
+        @store = Store.find(params[:store_id])
         @orders = Order.all
       end
     
@@ -27,7 +28,11 @@ class OrderController < ApplicationController
        puts "++++++++++"
        end
 
-      private
+      def approved_orders
+        @store = Store.find(params[:store_id])
+        render 'approved'
+      end
+        private
       def order_params
       params.require(:order).permit(:address )
       end
