@@ -6,7 +6,7 @@ def index
   #  @cart_product =@cart.CartsProduct.product_id
     @cart_total = CartsProduct.all
     @products = @cart.products
-
+    puts "#######################+#{@products.inspect}"
   #  @total = @cart.product
 end
 

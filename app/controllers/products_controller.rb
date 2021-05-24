@@ -131,12 +131,16 @@ def filter
     puts "########################################################+#{@productBrand.inspect} "
   end
   #########################Done#########################
-  if params[:category] == "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
-    @products=Product.where(category_id: params[:category])
+
+  if params[:category] != "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller] == "All"
+    @productsCategory=Product.where(category_id: params[:category])
+    puts "########################################################+#{@products.inspect}"
+
   end
   ########################Done###########################
   if params[:category] == "All" and params[:brand] == "All" and params[:price] == "All" and params[:seller]  != "All"
-    @products=Product.where(store_id: params[:seller])
+    @productsseller=Product.where(store_id: params[:seller])
+    puts "########################################################+#{@products.inspect}"
   end
   #######################Done############################
   if params[:category] == "All" and params[:brand] == "All" and params[:price] != "All" and params[:seller]  == "All"
@@ -214,18 +218,67 @@ if  params[:brands] == "All"
  if params[:price] != "All"
    if params[:seller] == "All" 
       if params[:price] == "0..9"
-        @products=Product.where(price: 0..9)
+        @productspricecategoy=Product.where(price: 0..9)
         elsif params[:price] == "10..20"
-          @products=Product.where(price: 10..20,category_id: params[:category])
+          @productspricecategoy=Product.where(price: 10..20,category_id: params[:category])
         elsif params[:price] == "20"
-          @products=Product.where("price > 20",category_id: params[:category])
+          @productspricecategoy=Product.where("price > 20",category_id: params[:category])
       end
      end
   end
 end
 puts "########################################################+#{@products.inspect} "
 end
-#################################################################
+############################Check-category-Seller#####################################
+if params[:category] != "All" and params[:brands] == "All" and  params[:price] == "All"and params[:seller] != "All"
+  puts params[:category]
+  puts params[:seller]
+  @productCategoryseller=Product.where(store_id: params[:seller],category_id: params[:category])
+  puts "########################################################+#{@productCategoryseller.inspect} "
+end
+  #########################Category-brand-seller##################
+  if params[:category] != "All" and params[:brands] != "All" and  params[:price] == "All"and params[:seller] != "All"
+    puts params[:category]
+    puts params[:seller]
+    @productCategoryseller=Product.where(store_id: params[:seller],category_id: params[:category],brand_id: params[:brand])
+    puts "########################################################+#{@productCategoryseller.inspect} "
+  end
+  ##########################Check-Category-brand-price################################
+  if params[:category] != "All" and params[:brands] != "All" and  params[:price] != "All"and params[:seller] != "All"
+    if params[:price] == "0..9"
+      @productbrandPrice=Product.where(price: 0..9,brand_id: params[:brand],store_id: params[:seller],category_id: params[:category])
+    elsif params[:price] == "10..20"
+      @productbrandPrice=Product.where(price: 10..20,brand_id: params[:brand],store_id: params[:seller],category_id: params[:category])
+    elsif params[:price] == "20"
+      @productbrandPrice=Product.where("price > 20",brand_id: params[:brand],store_id: params[:seller],category_id: params[:category])
+    end
+    # puts "########################################################+#{@productPrice.inspect} "
+    end
+  ##################################Category-price-seller###########################
+  if params[:category] != "All" and params[:brands] == "All" and  params[:price] != "All"and params[:seller] != "All"
+    if params[:price] == "0..9"
+      @productbrandPrice=Product.where(price: 0..9,store_id: params[:seller],category_id: params[:category])
+    elsif params[:price] == "10..20"
+      @productbrandPrice=Product.where(price: 10..20,store_id: params[:seller],category_id: params[:category])
+    elsif params[:price] == "20"
+      @productbrandPrice=Product.where("price > 20",store_id: params[:seller],category_id: params[:category])
+    end
+    # puts "########################################################+#{@productPrice.inspect} "
+    end
+  ###################################Category-Seller-brand-price##################################
+  if params[:category] != "All" and params[:brands] != "All" and  params[:price] != "All"and params[:seller] != "All"
+    if params[:price] == "0..9"
+      @productbrandPrice=Product.where(price: 0..9,store_id: params[:seller],brand_id: params[:brand],category_id: params[:category])
+    elsif params[:price] == "10..20"
+      @productbrandPrice=Product.where(price: 10..20,store_id: params[:seller],brand_id: params[:brand],category_id: params[:category])
+    elsif params[:price] == "20"
+      @productbrandPrice=Product.where("price > 20",store_id: params[:seller],brand_id: params[:brand],category_id: params[:category])
+    end
+    # puts "########################################################+#{@productPrice.inspect} "
+    end
+
+
+  ##################################################################
 end
 
   private
