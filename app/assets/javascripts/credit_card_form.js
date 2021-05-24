@@ -1,90 +1,90 @@
-$(document).on('ready turbolinks:load', function() {
+// $(document).on('ready turbolinks:load', function() {
 
-    var show_error, stripeResponseHandler, submitHandler;
+//     var show_error, stripeResponseHandler, submitHandler;
 
-    submitHandler = function(event) {
-        //event.preventDefault()
+//     submitHandler = function(event) {
+//         //event.preventDefault()
 
-        var $form = $(event.target);
+//         var $form = $(event.target);
 
-        $form.find("input[type=submit]").prop("disabled", true);
-        var elements = stripe.elements();
+//         $form.find("input[type=submit]").prop("disabled", true);
+//         var elements = stripe.elements();
 
-        var cardElement = elements.create('card');
-        console.log(cardElement)
-        var cardElement = elements.getElement('card');
-        // Stripe.createToken(cardElement).then(function(result) {
-        //     console.log(result)
+//         var cardElement = elements.create('card');
+//         console.log(cardElement)
+//         var cardElement = elements.getElement('card');
+//         // Stripe.createToken(cardElement).then(function(result) {
+//         //     console.log(result)
 
-        //   });
-        // if(Stripe){
-        // console.log(Stripe)
-        // Stripe.card.createToken($form, stripeResponseHandler);
+//         //   });
+//         // if(Stripe){
+//         // console.log(Stripe)
+//         // Stripe.card.createToken($form, stripeResponseHandler);
 
-        // } else {
+//         // } else {
 
-        // show_error("Failed to load credit card processing functionality. Please reload this page in your browser.")
+//         // show_error("Failed to load credit card processing functionality. Please reload this page in your browser.")
 
-        // }
+//         // }
 
-        return false;
+//         return false;
 
-    };
+//     };
 
-    $(".cc_form").on('submit', submitHandler);
+//     $(".cc_form").on('submit', submitHandler);
 
-    stripeResponseHandler = function(status, response) {
+//     stripeResponseHandler = function(status, response) {
 
-        var token, $form;
+//         var token, $form;
 
-        $form = $('.cc_form');
-        console.log(response)
-        if (response.error) {
+//         $form = $('.cc_form');
+//         console.log(response)
+//         if (response.error) {
 
-            console.log(response.error.message);
+//             console.log(response.error.message);
 
-            show_error(response.error.message);
+//             show_error(response.error.message);
 
-            $form.find("input[type=submit]").prop("disabled", false);
+//             $form.find("input[type=submit]").prop("disabled", false);
 
-        } else {
+//         } else {
 
-            token = response.id;
+//             token = response.id;
 
-            $form.append($("<input type=\"hidden\" name=\"payment[token]\" />").val(token));
+//             $form.append($("<input type=\"hidden\" name=\"payment[token]\" />").val(token));
 
-            $("[data-stripe=number]").remove();
+//             $("[data-stripe=number]").remove();
 
-            $("[data-stripe=cvv]").remove();
+//             $("[data-stripe=cvv]").remove();
 
-            $("[data-stripe=exp-year]").remove();
+//             $("[data-stripe=exp-year]").remove();
 
-            $("[data-stripe=exp-month]").remove();
+//             $("[data-stripe=exp-month]").remove();
 
-            $("[data-stripe=label]").remove();
+//             $("[data-stripe=label]").remove();
 
-            $form.get(0).submit();
+//             $form.get(0).submit();
 
-        }
+//         }
 
-        return false;
+//         return false;
 
-    };
+//     };
 
-    show_error = function(message) {
+//     show_error = function(message) {
 
-        if ($("#flash-messages").size() < 1) {
+//         if ($("#flash-messages").size() < 1) {
 
-            $('div.container.main div:first').prepend("<div id='flash-messages'></div>")
+//             $('div.container.main div:first').prepend("<div id='flash-messages'></div>")
 
-        }
+//         }
 
-        $("#flash-messages").html('<div class="alert alert-warning"><a class="close" data-dismiss="alert">×</a><div id="flash_alert">' + message + '</div></div>');
+//         $("#flash-messages").html('<div class="alert alert-warning"><a class="close" data-dismiss="alert">×</a><div id="flash_alert">' + message + '</div></div>');
 
-        $('.alert').delay(5000).fadeOut(3000);
+//         $('.alert').delay(5000).fadeOut(3000);
 
-        return false;
+//         return false;
 
-    };
+//     };
 
-});
+// });

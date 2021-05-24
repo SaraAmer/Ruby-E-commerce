@@ -11,9 +11,6 @@ end
 
 
 
-
-
-
 def create
     @product = Product.find(params[:product])
     @cart = Cart.find_or_create_by(user: current_user)

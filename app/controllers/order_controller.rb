@@ -11,8 +11,12 @@ class OrderController < ApplicationController
         @order = Order.new
       end
       def create 
-       @order =  Order.create(order_params)
-       @order.status = "pending"
+
+       
+       puts "++++++++++"
+       puts params[:order]["address"]
+       puts "++++++++++"
+    
        @cart = Cart.find_or_create_by(user: current_user)
        @cart_total = CartsProduct.all
        @products = @cart.products
@@ -20,11 +24,24 @@ class OrderController < ApplicationController
        @products.each do |product|
            @total+= product.carts_products[0].quantity*product.price
        end
-       @order.price = @total
-       @cart.products.purge
+       @order =  Order.new(user: current_user ,address: params[:order]["address"] , status: "pending" , total: @total )
+       @order.products << @products
+       
+       if @order.save
+        redirect_to  products_path
+      else  
+        puts "++++++++++"
+        @order.errors.each do |e|
+          puts e
+        end
+     
+        puts "++++++++++"
+      end
+       @products.delete_all
        puts "++++++++++"
-       puts @cart.products
+       puts @order.total
        puts "++++++++++"
+
        end
 
       private
