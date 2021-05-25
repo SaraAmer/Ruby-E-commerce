@@ -22,6 +22,11 @@ class ProductsController < InheritedResources::Base
     @product = Product.new
     #@categories_array = Category.all.map{|category|[category.name , category.id]}
   end
+  def show 
+    @cart = Cart.find_or_create_by(user: current_user)
+    @cart_products = @cart.products
+    @product = Product.with_attached_images.find(params[:id])
+    end
   def create 
     @store = Store.find(params[:store_id])
     @product=  @store.products.create(product_params)
@@ -36,10 +41,15 @@ class ProductsController < InheritedResources::Base
   def destroy
   @product = Product.with_attached_images.find(params[:id])
   @store = Store.find(params[:store_id])
-  @product.images.purge
-  @product.destroy
-  redirect_to store_products_path(@store)
-  
+  begin
+    @product.destroy
+    @product.images.purge
+    redirect_to store_products_path(@store)
+   rescue => ex
+    puts "+++++++++++Delete ERROR+++++++++++++"
+    @error = ex.message
+    redirect_to store_products_path(@store)
+   end
   end 
   def edit 
     

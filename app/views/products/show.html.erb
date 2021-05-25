@@ -43,17 +43,32 @@
             <h4 class="price">Available Quantity: <span> <%= @product.quantity %></span></h4>
 
 						<div class="action">
-              <% if user_signed_in? %>
+            <% if user_signed_in? %>
+ 
+ <% if can? :read, @product.store %>
+ <a href="<%= edit_store_product_path(@product.store , @product)%>"> <i class="fa fa-pen"></i> </a> 
+ <%= link_to store_product_path(@product.store , @product) , method: :delete ,data: { confirm: 'Are you sure?' } do %>
+ <i class="fa fa-trash"></i>
+ <% end %>
+ 
+ <%else%>
+ <% if @cart_products.include?(@product)%>
+ <%= link_to delete_from_cart_store_product_path(@product.store , @product) , method: :delete ,data: { confirm: 'Are you sure?' } do %>
+ <i class="fa fa-times" ></i>
+ <% end %>
+ 
+ <%else %>
  <%if @product.quantity > 0%>
  <%= link_to user_cart_index_path(current_user , product: @product) , method: :post ,data: { confirm: 'Are you sure?' } do %>
-Add to Cart <%end %>
+ Add to cart
+ <%end %>
  <%else%>
-<span>Out of Stock!</span>
-<%end%>							
-
-<% else %>
-							<a href="<%=  new_user_session_path %>" class="add-to-cart btn btn-default">add to cart</a>
-
+ <span> Out of Stock </span>
+ <%end%>
+ <% end %>
+<%end%> 
+<%else%>
+<a href="<%= new_user_session_path %>" class="add-to-cart btn btn-default">add to cart</a>
 <%end%>
 
 

@@ -1,6 +1,5 @@
 <%# ---------------------------- %>
- 
-<p id="notice"><%= notice %></p>
+ <p id="notice"><%= notice %></p>
  <% if @store %>
  <%= render 'stores/sideMenu' %>
  <%end %>
@@ -9,16 +8,22 @@
  
  <div class="row" style="margin-bottom:10px">
  
-    <% if @store %>
-    <% if can? :read, @store %>
+ <% if @store %>
+ <% if can? :read, @store %>
  <a class="btn btn-success" href="<%= new_store_product_path(@store)%>">Add New Product</a>
  <%end%>
+ <% if @error %>
+ kkkkkkkkkkkkkkkkkkkkkk
+<div class="alert alert-danger" role="alert">
+  This is a danger alert—check it out!
+</div>
+ <%end%>
+ <%else%>
+ <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Filter product</button>
  <%end%>
  </div>
  </div>
- 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Filter product</button>
-    <div class="row">
+ <div class="row">
     <div class="container">
   
   <!-- Trigger the modal with a button -->
