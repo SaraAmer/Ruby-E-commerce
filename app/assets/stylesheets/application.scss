@@ -798,3 +798,12 @@
     .details button:hover {
         background-color: black;
     }
+    .details a {
+        background-color: #717fe0;
+        font-size: 15px;
+        text-transform: uppercase;
+        color: #fff;
+        padding: 8px 16px;
+        transition: ease-in-out 0.5s;
+        cursor: pointer;
+       }

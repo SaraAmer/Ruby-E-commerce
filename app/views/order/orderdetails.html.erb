@@ -1,0 +1,21 @@
+<table id="cart" class="products">
+ <tr class="header">
+ <th>Product </th>
+ <th>Price</th>
+ <th>Quantity</th>
+  </tr>
+
+ 
+<%@products.each do |order_product|%>
+ <tr>
+ <td>
+ <%= image_tag url_for(order_product.product.images[0]) %>
+ </td>
+ <td><%=order_product.product.price%></td>
+ <td><%= order_product.quantity%>
+ </td>
+  </tr>
+<%end%>
+
+ 
+ </table>

@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
     has_many :carts_products
-    has_many :products , through: :carts_products
+    has_many :products , through: :carts_products, dependent: :delete_all
     belongs_to :user
 
   # LOGIC

@@ -1,37 +1,43 @@
 
 <%= render 'stores/sideMenu' %>
-<% @orders.each do |order| %>
-  <p>Name: <%= order.user_id %></p>
-  <p>id: <%= order.id %></p>
-  <p>order Items: </p>
-  <ul>
-    <% order.order_products.each do |item| %>
-    <li><%= item.quantity %> x <%= item.product.name %></li>
-    <% end %>
-  </ul>
-<% end%>
 <div class="store-content">
-  <h1 style="margin-bottom: 50px">List Of orders</h1>
+  <%# <h1 style="margin-bottom: 50px">List Of orders</h1> %>
     <table class="orders-table">
         <tr class="header">
             <th>Customer Name</th>
-            <th>Total Prie</th>
-            <th>Order details</th>
+            <th>Product code</th>
+              <th>Product Name</th>
+                <th>Shipping address</th>
+                  <th>Price</th>
+            <th>action</th>
         </tr>
-        <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>200$</td>
-            <td class="details">
-                <button>Details</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Berglunds snabbköp</td>
-            <td>100$</td>
-            <td class="details">
-                <button>Details</button>
 
+<%@orders.each do |order|%>
+
+<% if order.product.store.id == @store.id && order.status != "delivered"%>
+
+  
+        <tr>
+            <td><%= order.order.user.name%></td>
+            <td><%= order.product.id %></td>
+             <td><%= order.product.name %></td>
+              <td><%= order.order.address %></td>
+               <td><%= order.product.price %></td>
+            <td class="details">
+            <% if order.status == "pending"%>
+                <a href="<%= store_order_confirm_order_path(@store , order)%>" class ="btn btn-success">
+                Accept
+               <%elsif order.status == "confirmed"%>
+                <a class ="btn btn-info" href="<%= store_order_deliver_order_path(@store , order)%>">
+               delivered
+                </a>
+                <%else%>
+               <%end%>
             </td>
         </tr>
+
+            <%end%>
+    <%end%>
     </table>
     </div>
+ 

@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   root to: 'products#home'
   resources :stores do 
     resources :order , :except =>[:create] do 
-
+        get :confirm_order
+        get :deliver_order
         get :approved_orders
-    
+       
         end
     resources :products do
       member do
@@ -17,7 +18,10 @@ Rails.application.routes.draw do
       end
     end
   end  
-  resources :order  , :only =>[:index , :create]
+  resources :order  , :only =>[:index , :create] do 
+    get :my_orders
+    get :order_details
+  end
   devise_for :users
   resources :user do
     resources :cart  , :only =>[:index , :create]
