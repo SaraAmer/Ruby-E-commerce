@@ -311,7 +311,11 @@
     .product-img {
         overflow: hidden;
         position: relative;
-        height: 350px;
+    }
+    .product-img img {
+        width: 290px;
+        height: 400px;
+        vertical-align: middle;
     }
     
     .mb-45 {
