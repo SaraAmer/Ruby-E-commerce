@@ -31,12 +31,12 @@ development:
   # the same name as the operating system user that initialized the database.
 
 
-  #username: marwa
+  username: marwa
 
   #username: eithar
 
   # The password associated with the postgres role (username).
-  #password: 1234
+  password: 1234
 
 
 
