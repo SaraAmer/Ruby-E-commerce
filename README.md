@@ -1,5 +1,8 @@
 # README
 https://ecommerceprojectruby.herokuapp.com/
-for using admin please user this data
+</br>
+for using admin please user this data:
+</br>
 Email : admin@example.com
+</br>
 password : password
