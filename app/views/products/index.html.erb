@@ -90,6 +90,9 @@
  <div class="product-action">
  <div class="product-action-style"> 
  <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a> 
+ 
+  <% if user_signed_in? %>
+
  <% if can? :read, product.store %>
  <a href="<%= edit_store_product_path(product.store , product)%>"> <i class="fa fa-pen"></i> </a> 
  <%= link_to store_product_path(product.store , product) , method: :delete ,data: { confirm: 'Are you sure?' } do %>
@@ -110,6 +113,7 @@
  <span> Out of Stock </span>
  <%end%>
  <% end %>
+ <%end%>
  <%end%>
  </div>
  </div>

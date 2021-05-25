@@ -43,9 +43,19 @@
             <h4 class="price">Available Quantity: <span> <%= @product.quantity %></span></h4>
 
 						<div class="action">
-            
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<%# <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> %>
+              <% if user_signed_in? %>
+ <%if @product.quantity > 0%>
+ <%= link_to user_cart_index_path(current_user , product: @product) , method: :post ,data: { confirm: 'Are you sure?' } do %>
+Add to Cart <%end %>
+ <%else%>
+<span>Out of Stock!</span>
+<%end%>							
+
+<% else %>
+							<a href="<%=  new_user_session_path %>" class="add-to-cart btn btn-default">add to cart</a>
+
+<%end%>
+
 
             
 						</div>
