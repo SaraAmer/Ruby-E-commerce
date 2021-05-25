@@ -103,10 +103,13 @@
                             <% end %>
                             
                               <%else %>
+                              <%if product.quantity > 0%>
                                <%= link_to  user_cart_index_path(current_user , product: product) , method: :post  ,data: { confirm: 'Are you sure?' } do %>
                              <i class="fa fa-shopping-cart"></i> 
                              <%end %>
-                              
+                             <%else%>
+                             <span> Out of Stock </span>
+                              <%end%>
                             <% end %>
                           <%end%>
                          </div>

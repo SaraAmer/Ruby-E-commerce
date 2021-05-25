@@ -100,6 +100,8 @@
                                                 <li>
                                                     <%= link_to 'My Profile', user_index_path ,class: 'navbar-nav' %></li>
                                                 <li>
+                                                    <%= link_to 'My orders',order_my_orders_path(current_user.id) %></li>
+                                                                      <li>
                                                     <%= link_to 'Logout', destroy_user_session_path , method: :delete, class: 'navbar-nav' %></li>
                                             <% else %>
                                                 <li>

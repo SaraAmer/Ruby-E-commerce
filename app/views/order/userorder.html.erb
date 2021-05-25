@@ -1,0 +1,19 @@
+<table class="orders-table">
+ <tr class="header">
+ <th>Order</th>
+ <th>Total Price</th>
+ <th>Status </th>
+ <th></th>
+ </tr>
+ <tr>
+ <% @orders.each do |order|%>
+ <td><%= order.created_at%></td>
+ <td><%= order.total%></td>
+ <td><%= order.status %></td>
+ <td class="details">
+ <a href="<%= order_order_details_path(order)%>">Details</a>
+ </td>
+
+ </tr>
+  <%end%>
+</table>

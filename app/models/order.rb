@@ -1,7 +1,9 @@
 class Order < ApplicationRecord
-    has_many :orders_product
-    has_many :products , through: :orders_product
+    has_many :orders_products
+    has_many :products , through: :orders_products
     belongs_to :user   
+
+ 
     # before_save :set_subtotal
     # accepts_nested_attributes_for :payment     
     # def subtotal
