@@ -42,11 +42,13 @@ class ProductsController < InheritedResources::Base
   
   end 
   def edit 
+    
     @store = Store.find(params[:store_id])
     @product = Product.with_attached_images.find(params[:id])
     
     end
   def update
+    @store = Store.find(params[:store_id])
   @product = Product.with_attached_images.find(params[:id])
   if @product.update(product_params)
   render 'show'
