@@ -105,10 +105,9 @@ def update_cart_quantity
   @cart = Cart.find_by(user: current_user)
   @cart_product = CartsProduct.find_by(cart: @cart , product: @product)
   quantity = @cart_product.quantity
-
   if @product.quantity > @cart_product.quantity && params[:type] == "plus" 
    quantity = @cart_product.quantity+1
-  elsif @cart_product.quantity > 0 && params[:type] == "minus"
+  elsif @cart_product.quantity > 1 && params[:type] == "minus"
    quantity = @cart_product.quantity-1
   end
   puts "==========================================="
