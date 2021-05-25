@@ -105,6 +105,9 @@
                                                     <%= link_to 'Logout', destroy_user_session_path , method: :delete, class: 'navbar-nav' %></li>
                                             <% else %>
                                                 <li>
+                                                <%= link_to 'Staff only', new_admin_user_session_path ,class: 'navbar-nav'%>
+                                                </li>
+                                                <li>
                                                     <%= link_to 'Sign Up', new_user_registration_path ,class: 'navbar-nav'%>
                                                 </li>
                                                 <li><%= link_to 'Login', new_user_session_path ,class: 'navbar-nav'%>

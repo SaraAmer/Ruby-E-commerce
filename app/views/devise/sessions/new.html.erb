@@ -30,6 +30,12 @@
   </div>
 <% end %>
 
+  <%= devise_error_messages! %>
+    <% flash.each do |key, value| %>
+       <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+    
 <p>create a new account <%= render "devise/shared/links" %><p>
 </div>
 </div>
+
