@@ -1,15 +1,14 @@
 class CartController < ApplicationController
 def index
+    ##72ra mn gdwl ap cart products lma al cart id howa al al cart id al mb3ot
     @cart = Cart.find_or_create_by(user: current_user)
    # @product = Product.find(params[:id])
-   # @cart_product=CartsProduct.find(params[:id])
+ 
     @products = @cart.products
-    puts "#######################+#{@products.inspect}"
-  #  @total = @cart.product
+    @cart_product=CartsProduct.where( id: params[:cartid])
+    @cart_total = CartsProduct.all
+    puts "#######################+#{@cart_product.inspect}"
 end
-
-
-
 
 
 

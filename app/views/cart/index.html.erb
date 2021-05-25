@@ -26,7 +26,14 @@
                 </div>
             </td>
             <td>
-            <%# <td>  <%= @cart_product.sub_total  cent%> </td> %>
+    
+
+        <% @cart_total.each do |cart| %>
+                <td><%= cart.subtotal_price%>
+        <%end%>
+
+
+
 
             <td class="actions">
                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
@@ -57,7 +64,7 @@
     </article>
 
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%%= Rails.configuration.stripe[:publishable_key] %>"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
             data-description="Check Out"
             data-amount=<%=@cart.total%>
 
