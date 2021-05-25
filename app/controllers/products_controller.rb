@@ -1,5 +1,5 @@
 class ProductsController < InheritedResources::Base
-  before_action :authenticate_user!
+ # before_action :authenticate_user!
   before_action do
     @categories=Category.all 
     @brands=Brand.all
