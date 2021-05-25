@@ -81,54 +81,48 @@
 </div>
 
         </div>
- </form>   
-       
-    <% @products.each do |product| %>
+ </form>  
+ <% @products.each do |product| %>
  
-        <div class="col-md-3">
-            <div class="product-wrapper mb-45 text-center"  style="background-color:#FBFCFF">
-                <div class="product-img"> <a href="#" data-abc="true"> <%= image_tag url_for(product.images[0]) %> </a> <span class="text-center"><i class="fa fa-rupee"></i><%= product.name%></span>
-                    <div class="product-action">
-                         <div class="product-action-style"> 
-                         <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a> 
-                          <% if can? :read, product.store %>
-                            <a href="<%= edit_store_product_path(product.store , product)%>"> <i class="fa fa-pen"></i> </a>  
-                            <%= link_to  store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
-                            <i class="fa fa-trash"></i>
-                            <% end %>
-                            <%else%>
-                              <% if @cart_products.include?(product)%>
-                                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
-                            <i class="fa fa-times" ></i>
-                            <% end %>
-                            
-                              <%else %>
-                               <%= link_to  user_cart_index_path(current_user , product: product) , method: :post  ,data: { confirm: 'Are you sure?' } do %>
-                             <i class="fa fa-shopping-cart"></i> 
-                             <%end %>
-                              
-                            <% end %>
-                          <%end%>
-                         </div>
-                    </div>
+ <div class="col-md-3">
+ <div class="product-wrapper mb-45 text-center" style="background-color:#FBFCFF">
+ <div class="product-img"> <a href="#" data-abc="true"> <%= image_tag url_for(product.images[0]) %> </a> <span class="text-center"><i class="fa fa-rupee"></i><%= product.name%></span>
+ <div class="product-action">
+ <div class="product-action-style"> 
+ <a href="<%= store_product_path(product.store , product)%>"> <i class="fa fa-eye"></i> </a> 
+ <% if can? :read, product.store %>
+ <a href="<%= edit_store_product_path(product.store , product)%>"> <i class="fa fa-pen"></i> </a> 
+ <%= link_to store_product_path(product.store , product) , method: :delete ,data: { confirm: 'Are you sure?' } do %>
+ <i class="fa fa-trash"></i>
+ <% end %>
+ <%else%>
+ <% if @cart_products.include?(product)%>
+ <%= link_to delete_from_cart_store_product_path(product.store , product) , method: :delete ,data: { confirm: 'Are you sure?' } do %>
+ <i class="fa fa-times" ></i>
+ <% end %>
  
-                </div>
-            </div>
-         
-        </div>
-  
-    
-     
-    <%end%>
-       </div>
+ <%else %>
+ <%if product.quantity > 0%>
+ <%= link_to user_cart_index_path(current_user , product: product) , method: :post ,data: { confirm: 'Are you sure?' } do %>
+ <i class="fa fa-shopping-cart"></i> 
+ <%end %>
+ <%else%>
+ <span> Out of Stock </span>
+ <%end%>
+ <% end %>
+ <%end%>
+ </div>
+ </div>
+ 
+ </div>
+ </div>
+ 
+ </div>
+ 
+ 
+ 
+ <%end%>
+ </div>
  </div> 
-
-
+ 
 <br>
-
-
-
-
-
-
-<%# -------------------------- %>

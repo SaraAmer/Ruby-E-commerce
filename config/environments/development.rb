@@ -53,6 +53,8 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
@@ -69,7 +71,7 @@ Rails.application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :user_name            => 'lifehotel881@gmail.com',
-    :password             => <gmail_password>,
+    # :password             => <gmail_password>,
     :authentication       => "plain",
     :enable_starttls_auto => true
   }

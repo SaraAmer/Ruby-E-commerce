@@ -13,7 +13,7 @@
                 <%= image_tag url_for(product.images[0]) %>
             </td>
             <td><h4><%= product.name%></h4></td>
-            <td><%= product.price%> cent </td>
+            <td><%= product.price%>$</td>
             <td><%= product.carts_products[0].quantity %>
                 <div class="qty">
                 
@@ -25,16 +25,7 @@
                    </a>
                 </div>
             </td>
-            <td>
-    
-
-        <% @cart_total.each do |cart| %>
-                <td><%= cart.subtotal_price%>
-        <%end%>
-
-
-
-
+            <td><%= product.price * product.carts_products[0].quantity%></td>
             <td class="actions">
                  <%= link_to  delete_from_cart_store_product_path(product.store , product) , method: :delete  ,data: { confirm: 'Are you sure?' } do %>
                             <i class="fa fa-trash"></i>
@@ -48,32 +39,19 @@
    <div class="cart-action">
         <div class="content">
             <div class="total">
-                <h4>Total : </h4> <span>cent <%=@cart.total%> </span>
+                <h4>Total : </h4> <span><%= @total%></span>
+      <div>
+
+             <a href=<%= new_charge_path %>>
+               
+                
+                Check out
+                
+               
+                </a>
+                </div>
 
             </div>
       
-
-    <%= form_tag charges_path do %>
-    <article>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-
-    </article>
-
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Check Out"
-            data-amount=<%=@cart.total%>
-
-
-            data-locale="auto">
-            </script>
-            <% end %>
-        </div>
-
-    </div>
-
+</div>
     <script src="https://kit.fontawesome.com/35722683df.js" crossorigin="anonymous"></script>

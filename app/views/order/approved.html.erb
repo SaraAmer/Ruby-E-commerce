@@ -9,12 +9,12 @@
               <th>Product Name</th>
                 <th>Shipping address</th>
                   <th>Price</th>
-            <th>action</th>
+           
         </tr>
 
 <%@orders.each do |order|%>
 
-<% if order.product.store.id == @store.id && order.status != "delivered"%>
+<% if order.product.store.id == @store.id && order.status == "delivered"%>
 
   
         <tr>
@@ -23,17 +23,7 @@
              <td><%= order.product.name %></td>
               <td><%= order.order.address %></td>
                <td><%= order.product.price %></td>
-            <td class="details">
-            <% if order.status == "pending"%>
-                <a href="<%= store_order_confirm_order_path(@store , order)%>" class ="btn btn-success">
-                Accept
-               <%elsif order.status == "confirmed"%>
-                <a class ="btn btn-info" href="<%= store_order_deliver_order_path(@store , order)%>">
-               delivered
-                </a>
-                <%else%>
-               <%end%>
-            </td>
+  
         </tr>
 
             <%end%>

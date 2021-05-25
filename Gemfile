@@ -75,3 +75,5 @@ gem 'image_processing' ,'~>1.2'
 
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag' 
 gem 'stripe'
+#gem 'stripe-rails'
+

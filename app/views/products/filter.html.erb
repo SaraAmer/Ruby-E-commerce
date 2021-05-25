@@ -240,7 +240,7 @@
 
 
 
- <% if  (@products.present?) && (@productsseller.present?) && (@productsCategory.present?) && (@productspricecategoy.ispresent?) && (@productbrandPrice.ispresent?) && (@productCategoryseller.ispresent?) %>
+ <% if  (@products.present?) || (@productsseller.present?) || (@productsCategory.present?) || (@productspricecategoy.present?) || (@productbrandPrice.present?)|| (@productCategoryseller.present?) %>
 <%else %>
         <%= "No Product match your require , It doesn't exist in Our store"  %>
 <%end%>
