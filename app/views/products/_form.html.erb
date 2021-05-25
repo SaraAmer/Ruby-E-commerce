@@ -27,13 +27,23 @@
  <%end%>
   <div class="field">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id , class: "form-control" %>
+  <%= form.select :category_id, options_for_select(Product.category_options),
+
+{ include_blank: 'Category' },
+
+
+
+class: "form-control", required: true %>
+  
   </div>
 
   <div class="field">
     <%= form.label :brand_id %>
-    <%= form.text_field :brand_id , class: "form-control" %>
-  </div>
+<%= form.select :brand_id, options_for_select(Product.brand_options),
+
+{ include_blank: 'Brand' },
+
+class: "form-control", required: true %>  </div>
 
   <div class="field">
     <%= form.label :price %>

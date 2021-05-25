@@ -1,5 +1,5 @@
 class OrderProduct < ApplicationRecord
-    belongs_to :product
+    belongs_to :product , dependent: :destroy
     belongs_to :order
     belongs_to :user    
     before_save :set_unit_price

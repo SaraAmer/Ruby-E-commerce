@@ -53,9 +53,18 @@ class OrderController < ApplicationController
        end
 
       def approved_orders
-        @store = Store.find(params[:store_id])
-        render 'approved'
-      end
+        if params[:store_id] 
+          @store = Store.find(params[:store_id])
+          @orders = OrdersProduct.all
+          
+        else     
+          @orders = Order.all
+        end  
+
+        render "approved"
+        end
+
+
       def confirm_order
         puts "++++++++++"
         puts params[:order_id]
