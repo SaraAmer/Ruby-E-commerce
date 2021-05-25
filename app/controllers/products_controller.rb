@@ -88,21 +88,22 @@ end
   redirect_to request.referrer
  end
 def update_cart_quantity
-@product = Product.find(params[:id])
-@cart = Cart.find_by(user: current_user)
-@cart_product = CartsProduct.find_by(cart: @cart , product: @product)
+  @product = Product.find(params[:id])
+  @cart = Cart.find_by(user: current_user)
+  @cart_product = CartsProduct.find_by(cart: @cart , product: @product)
+  quantity = @cart_product.quantity
+  if @product.quantity > @cart_product.quantity && params[:type] == "plus" 
+   quantity = @cart_product.quantity+1
+  elsif @cart_product.quantity > 1 && params[:type] == "minus"
+   quantity = @cart_product.quantity-1
+  end
+  puts "==========================================="
+  puts params[:type]
+  puts "==========================================="
+  @cart_product.update(quantity: quantity)
+  redirect_to request.referrer
+  end
 
-if params[:type] == "plus" 
-  quantity = @cart_product.quantity+1
-else params[:type] == "minus"
-  quantity = @cart_product.quantity-1
-end
-puts "==========================================="
-puts params[:type]
-puts "==========================================="
-@cart_product.update(quantity: quantity)
-redirect_to request.referrer
-end
    
   ########################################
 def search
