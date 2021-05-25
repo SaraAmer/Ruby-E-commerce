@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
   # These are extensions that must be enabled in order to support this database
  
