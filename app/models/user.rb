@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
 private
 def send_email
-UserMailer.with(user: @user).welcome_email.deliver_now
+# UserMailer.with(user: @user).welcome_email.deliver_now
 end
 
 end
